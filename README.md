@@ -42,7 +42,7 @@ Navegue até o diretório do projeto.
    dotnet run
    ```
 ### Iniciando o Front-end
-1. Nevege ate a pasta Presentation.
+1. Navege ate a pasta Presentation.
 2. Atualize node_modules
  ```bash
    npm install
