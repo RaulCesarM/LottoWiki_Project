@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>   
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />   
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.ML" Version="4.0.0-preview.24378.1" />
+	  <PackageReference Include="Microsoft.ML.AutoML" Version="0.22.0-preview.24378.1" />
+	  <PackageReference Include="Microsoft.ML.CpuMath" Version="4.0.0-preview.24378.1" />
+	  <PackageReference Include="Microsoft.ML.DataView" Version="4.0.0-preview.24378.1" />
+	  <PackageReference Include="Microsoft.ML.LightGbm" Version="4.0.0-preview.24378.1" />
+	  <PackageReference Include="Microsoft.ML.Probabilistic" Version="0.4.2403.801" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LottoWiki.Data\LottoWiki.Data.csproj" />
+    <ProjectReference Include="..\LottoWiki.Domain\LottoWiki.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

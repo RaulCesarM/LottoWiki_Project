@@ -1,0 +1,6 @@
+@LottoWiki_HostAddress = http://localhost:7139
+
+GET {{LottoWiki_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

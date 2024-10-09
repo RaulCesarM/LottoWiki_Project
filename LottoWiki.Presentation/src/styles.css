@@ -1,0 +1,53 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html,
+body {
+  height: 100%;
+
+}
+.content{
+  padding: 0px;
+}
+
+body {
+
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 2px;
+  overflow: hidden;
+}
+
+
+.spadding {
+  padding: 15px;
+}
+
+span.katex-html {
+  display: none !important;
+}
+
+.custom-katex-font-size {
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-katex-font-size {
+    font-size: 8px;
+  }  
+}
+
+@media only screen and (max-width: 700px) {
+  .custom-katex-font-size {
+    font-size: 10px;
+  } 
+
+ 
+}
+
+

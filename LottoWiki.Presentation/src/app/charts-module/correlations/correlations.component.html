@@ -1,0 +1,163 @@
+<!-- <div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="row">
+    <div class="center-Table">
+      <table>
+        <thead></thead>
+        <tbody>
+        <tbody>
+          <ng-container *ngFor="let rowNumber of indexRow.reverse(); let rowIndex = index">
+            <tr>
+              <th style="font-weight: bold;"> {{ rowNumber }}
+              </th>
+              <ng-container *ngFor="let cellNumber of cells[rowIndex]; let cellIndex = index">
+                <td [ngStyle]="{'background-color': getCellColor(cellNumber)}">  {{cellNumber}}
+                </td>
+              </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <ng-container *ngFor="let header of headers; let i = index">
+              <th  class="thead"  style="font-weight: bold; ">{{ header }} </th>
+            </ng-container>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div> -->
+
+<!-- 
+
+ <div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="center-Table">
+    <table>
+      <tfoot>
+        <tr>
+          <th></th>
+          <ng-container *ngFor="let header of headers; let colIndex = index">
+            <th class="thead"
+                [ngClass]="{'hovered-footer': hoveredColumnIndex === colIndex}"
+                (mouseover)="onCellMouseOvercol(colIndex)"
+                (mouseout)="onCellMouseOutcol()"
+                style="font-weight: bold;">
+              {{ header }}
+            </th>
+          </ng-container>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let row of indexRow.reverse(); let rowIndex = index" 
+            [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex)}">
+          <th [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex)}"
+              (mouseover)="onCellMouseOverRow(indexRow.length - 1 - rowIndex)"
+              (mouseout)="onCellMouseOut()">
+            {{ row }}
+          </th>
+          <ng-container *ngFor="let cellValue of cells[rowIndex]; let colIndex = index">
+            <td [ngStyle]="{'background-color': getCellColor(cellValue)}"
+                [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex) || hoveredColumnIndex === colIndex}"
+                (mouseover)="onCellMouseOver(indexRow.length - 1 - rowIndex, colIndex)"
+                (mouseout)="onCellMouseOut()">
+              {{ cellValue }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+
+<div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="center-Table">
+    <table>
+      <tfoot>
+        <tr>
+          <th></th>
+          <ng-container *ngFor="let header of headers; let colIndex = index">
+            <th class="thead"
+                [ngClass]="{'hovered-index': hoveredColumnIndex === colIndex}"
+                (mouseover)="onCellMouseOvercol(colIndex)"
+                (mouseout)="onCellMouseOutcol()"
+                style="font-weight: bold;">
+              {{ header }}
+            </th>
+          </ng-container>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let row of indexRow.reverse(); let rowIndex = index" 
+            [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex)}">
+          <th [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex)}"
+              (mouseover)="onCellMouseOverRow(indexRow.length - 1 - rowIndex)"
+              (mouseout)="onCellMouseOut()">
+            {{ row }}
+          </th>
+          <ng-container *ngFor="let cellValue of cells[rowIndex]; let colIndex = index">
+            <td [ngStyle]="{'background-color': getCellColor(cellValue)}"               
+                (mouseover)="onCellMouseOver(indexRow.length - 1 - rowIndex, colIndex)"
+                (mouseout)="onCellMouseOut()">
+              {{ cellValue }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 
+<div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="center-Table">
+    <table>
+      <tfoot>
+        <tr>
+          <th></th>
+          <ng-container *ngFor="let header of headers; let colIndex = index">
+            <th class="thead"
+                [ngClass]="{'hovered-index': hoveredColumnIndex === colIndex}"
+                (mouseover)="onCellMouseOvercol(colIndex)"
+                (mouseout)="onCellMouseOutcol()"
+                style="font-weight: bold; z-index: 1000 !important;">
+              {{ header }}
+            </th>
+          </ng-container>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let row of indexRow.reverse(); let rowIndex = index" 
+            [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex)}">
+          <th [ngClass]="{'hovered-index': hoveredRowIndex === (indexRow.length - 1 - rowIndex)}"
+              (mouseover)="onCellMouseOverRow(indexRow.length - 1 - rowIndex)"
+              (mouseout)="onCellMouseOut()">
+            {{ row }}
+          </th>
+          <ng-container *ngFor="let cellValue of cells[rowIndex]; let colIndex = index">
+            <td
+              [ngClass]="{'hovered-index2': hoveredRowIndex === (indexRow.length - 1 - rowIndex) && colIndex <= hoveredColumnIndex}"
+              (mouseover)="onCellMouseOver(indexRow.length - 1 - rowIndex, colIndex)"
+              (mouseout)="onCellMouseOut()"
+              [ngStyle]="{'background-color': getCellColor(cellValue)}">
+              {{ cellValue }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+ -->

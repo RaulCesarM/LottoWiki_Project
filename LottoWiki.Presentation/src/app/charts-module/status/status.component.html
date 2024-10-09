@@ -1,0 +1,92 @@
+<!-- <div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="center-Table">
+    <table>
+      <thead>
+        <tr>
+          <th  style="width: 70px;"></th>
+          <th class="thead" *ngFor="let header of headers; let colIndex = index"
+              [ngClass]="{'hovered-index': hoveredColumnIndex === colIndex}"
+              (mouseover)="onCellMouseOvercol(colIndex)"
+              (mouseout)="onCellMouseOutcol()">{{ header }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let concurso of concursos; let rowIndex = index">
+          <th style="width: 70px;">{{ concurso }}</th>
+          <td *ngFor="let cellValue of cells[rowIndex]; let colIndex = index"
+              [ngStyle]="{'background-color': getCellColor(cellValue)}"
+              (mouseover)="onCellMouseOver(rowIndex, colIndex)" 
+              (mouseout)="onCellMouseOut()">
+            {{ cellValue }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+   
+  </div>
+</div>
+ -->
+ <div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
+  </div>
+  <div class="center-Table">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 70px;"></th>
+          <th class="thead" *ngFor="let header of headers; let colIndex = index"
+              [ngClass]="{'hovered-index': hoveredColumnIndex === colIndex}"
+              (mouseover)="onCellMouseOvercol(colIndex)"
+              (mouseout)="onCellMouseOutcol()">{{ header }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let concurso of concursos; let rowIndex = index">
+          <th style="width: 70px;">{{ concurso }}</th>
+          <td *ngFor="let cellValue of cells[rowIndex]; let colIndex = index"
+              [ngStyle]="{'background-color': getCellColor(cellValue)}"
+              (mouseover)="onCellMouseOver(rowIndex, colIndex)" 
+              (mouseout)="onCellMouseOut()">
+            {{ cellValue }}
+          </td>
+        </tr>
+      </tbody>
+
+<!--      
+      <tfoot>
+        <tr>
+          <td style="background-color:  rgb(234, 147, 147);"></td> 
+          <td style="background-color: rgb(234, 147, 147);" *ngFor="let i of [].constructor(25); let colIndex = index">
+            <input type="text" 
+                   [attr.name]="'input_' + colIndex"
+                   maxlength="1" 
+                   style="width: 25px; text-align: center;padding: 5px;margin: 5px; margin-top: 15px;"
+                   pattern="[A-Za-z]" 
+                   title="Apenas uma letra">
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: rgb(234, 147, 147);"></td> 
+          <td style="background-color: rgb(234, 147, 147);" *ngFor="let i of [].constructor(25); let colIndex = index">
+            <input type="text" 
+                   [attr.name]="'input_' + colIndex"
+                   maxlength="1" 
+                   style="width: 25px; text-align: center;padding: 5px;margin: 5px;"
+                   pattern="[A-Z]" 
+                   title="Apenas uma letra">
+          </td>
+        </tr>
+      </tfoot> -->
+    </table>
+  </div>
+</div>
