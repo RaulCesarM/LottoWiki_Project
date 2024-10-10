@@ -16,17 +16,27 @@ dotnet ef migrations add Name --project LottoWiki.Data/LottoWiki.Data.csproj --s
 ```bash
 dotnet ef database update
 ```
-### Versão .net core
-1. .NET SDK: Certifique-se de ter o .NET SDK 8.0 instalado.
-2. Para verificar as versões instaladas, execute o comando:
+
+### Requerimentos(em breve será contido em imagem docker)
+1. version 15.2.10.
+2. version Node.js 16.20.2
+3. version .NET SDK 8.0
+4. SQL SERVER
+
+ Para verificar as versões do angular instaladas, execute o comando:
+   ```bash
+   ng version
+   ```
+ Para verificar as versões do node instaladas, execute o comando:
+   ```bash
+  node -v
+   ```
+ Para verificar as versões do .net core instaladas, execute o comando:
    ```bash
    dotnet --list-sdks
    ```
-### Versão Angular
-1. version 15.2.10.
-2. version Node.js 16.20.2
 
-### Iniciando o Back-end
+### Iniciando o Back-end(em breve sera script)
 
 Navegue até o diretório do projeto.
 1. Restaure os pacotes NuGet:
@@ -41,7 +51,7 @@ Navegue até o diretório do projeto.
  ```bash
    dotnet run
    ```
-### Iniciando o Front-end
+### Iniciando o Front-end( sera adicionado a solution)
 1. Navege ate a pasta Presentation.
 2. Atualize node_modules
  ```bash
