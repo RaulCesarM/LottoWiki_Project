@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 })
 export class LunationRepository {
 
-  private endPoint = 'https://localhost:7139/api/LotoFacilLunation/';
+  private endPoint = 'https://localhost:44344/api/LotoFacilLunation/';
 
   constructor(private http: HttpClient) {}
 

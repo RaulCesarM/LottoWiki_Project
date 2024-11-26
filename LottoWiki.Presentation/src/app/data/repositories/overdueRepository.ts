@@ -7,7 +7,7 @@ export class OverdueRepository {
 
   constructor(private http: HttpClient) {}
 
-  private endPoint = 'https://localhost:7139/api/LotoFacilOverDue/last/'; 
+  private endPoint = 'https://localhost:44344/api/LotoFacilOverDue/last/'; 
 
   getData(): Observable<any> {    
     return this.http.get<any>(this.endPoint);

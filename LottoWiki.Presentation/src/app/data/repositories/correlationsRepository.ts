@@ -6,7 +6,7 @@ import { CorrelationPlaces } from "src/app/models/correlationPlaces";
 @Injectable({ providedIn: 'root' })
 export class CorrelationsRepository {
 
-  private endPoint = 'https://localhost:7139/api/LotoFacilCorrelation/'; 
+  private endPoint = 'https://localhost:44344/api/LotoFacilCorrelation/'; 
 
   constructor(private http: HttpClient) {}
 

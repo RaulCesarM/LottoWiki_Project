@@ -6,12 +6,12 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class StatusRepository {
-  private endPoint = 'https://localhost:7139/api/LotoFacilStatus/';
+  private endPoint = 'https://localhost:44344/api/LotoFacilStatus/';
 
   constructor(private http: HttpClient) {}
 
   getLast(): Observable<any> {
-    return this.http.get<any>(`https://localhost:7139/api/LotoFacilStatus/last`);
+    return this.http.get<any>(`https://localhost:44344/api/LotoFacilStatus/last`);
   }
 
   getById(id: number): Observable<any> {

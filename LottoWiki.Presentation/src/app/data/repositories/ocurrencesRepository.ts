@@ -7,7 +7,7 @@ export class OcurrencesRepository {
 
   constructor(private http: HttpClient) {}
 
-  private endPoint = 'https://localhost:7139/api/LotoFacilOcurrences'; 
+  private endPoint = 'https://localhost:44344/api/LotoFacilOcurrences'; 
 
   getData(): Observable<any> {      
     return this.http.get<any>(this.endPoint);
