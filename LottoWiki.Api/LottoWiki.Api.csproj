@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MachineLearning\SdcaMaximumEntropy.zip" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -40,10 +36,6 @@
   <ItemGroup>
     <ProjectReference Include="..\LottoWiki.Data\LottoWiki.Data.csproj" />
     <ProjectReference Include="..\LottoWiki.Service\LottoWiki.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="MachineLearning\" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,6 @@ namespace LottoWiki.Service.Repositories
             builder.AddScoped<ILotoFacilCommonRepository, LotoFacilRepository>();
             builder.AddScoped<ILotoFacilCommonRepositoryOverdue, LotoFacilRepositoryOverdue>();
             builder.AddScoped<ILotoFacilCommonRepositoryStatus, LotoFacilRepositoryStatus>();
-            builder.AddScoped<ILotoFacilCommonRepositoryDataModel, LotoFacilRepositoryDataModel>();
         }
     }
 }

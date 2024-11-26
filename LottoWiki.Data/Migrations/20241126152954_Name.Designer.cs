@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LottoWiki.Data.Migrations
 {
     [DbContext(typeof(LotofacilContext))]
-    [Migration("20241004110512_dataModel")]
-    partial class dataModel
+    [Migration("20241126152954_Name")]
+    partial class Name
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -640,112 +640,6 @@ namespace LottoWiki.Data.Migrations
                             Bola_24 = "A",
                             Bola_25 = "A"
                         });
-                });
-
-            modelBuilder.Entity("LottoWiki.Domain.Models.MachineLearning.LotoFacilDataModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ALetterCount")
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
-                    b.Property<int>("FirstFriend")
-                        .HasMaxLength(2)
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstFriendLetter")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("FirstOption")
-                        .HasMaxLength(2)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("HorizontalSequence")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("LuckyBall")
-                        .HasMaxLength(2)
-                        .HasColumnType("int");
-
-                    b.Property<string>("LunarSeasonality")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("NLetterCount")
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
-                    b.Property<string>("NextLetter")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("NextLetterSugestion")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("NextNumber")
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
-                    b.Property<string>("NumeredSequence")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("RLetterCount")
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
-                    b.Property<int>("SecondFriend")
-                        .HasMaxLength(2)
-                        .HasColumnType("int");
-
-                    b.Property<string>("SecondFriendLetter")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("SecondOption")
-                        .HasMaxLength(2)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("StatusId")
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
-                    b.Property<int>("ThirdFriend")
-                        .HasMaxLength(2)
-                        .HasColumnType("int");
-
-                    b.Property<string>("ThirdFriendLetter")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("ThreeSequence")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("TrueFriendLetter")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("ValidNextLetterSugestion")
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("VerticalSequence")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("bola.datamodel", (string)null);
                 });
 #pragma warning restore 612, 618
         }

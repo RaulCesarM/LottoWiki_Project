@@ -18,8 +18,6 @@ namespace LottoWiki.Service.QueryServices
             builder.AddScoped<ILotoFacilQueryOcurrences, LotoFacilQueryOcurrences>();
             builder.AddScoped<ILotoFacilQueryLunation, LofoFacilQueryLunation>();
             builder.AddScoped<ILotoFacilQueryStatus, LotoFacilQueryStatus>();
-            builder.AddScoped<ILotoFacilServiceDataModel, LotoFacilServiceDataModel>();
-            builder.AddScoped<ILotoFacilQueryDataModel, LotoFacilQueryDataModel>();
         }
     }
 }

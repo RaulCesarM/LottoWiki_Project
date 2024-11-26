@@ -7,7 +7,7 @@
 namespace LottoWiki.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class dataModel : Migration
+    public partial class Name : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -79,41 +79,6 @@ namespace LottoWiki.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_bola.atraso", x => new { x.Concurso, x.ConcursoAnterior, x.ProximoConcurso });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "bola.datamodel",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", maxLength: 4, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NextLetter = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    NextNumber = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    LuckyBall = table.Column<int>(type: "int", maxLength: 2, nullable: false),
-                    ValidNextLetterSugestion = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    TrueFriendLetter = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    StatusId = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    LunarSeasonality = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    FirstFriend = table.Column<int>(type: "int", maxLength: 2, nullable: false),
-                    SecondFriend = table.Column<int>(type: "int", maxLength: 2, nullable: false),
-                    ThirdFriend = table.Column<int>(type: "int", maxLength: 2, nullable: false),
-                    FirstFriendLetter = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    SecondFriendLetter = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    ThirdFriendLetter = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    RLetterCount = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    NLetterCount = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    ALetterCount = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    NextLetterSugestion = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    FirstOption = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: true),
-                    SecondOption = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: true),
-                    ThreeSequence = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
-                    NumeredSequence = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    HorizontalSequence = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    VerticalSequence = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_bola.datamodel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,9 +158,6 @@ namespace LottoWiki.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "bola.atraso");
-
-            migrationBuilder.DropTable(
-                name: "bola.datamodel");
 
             migrationBuilder.DropTable(
                 name: "bola.status");

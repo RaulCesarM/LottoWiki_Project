@@ -35,14 +35,12 @@ namespace LottoWiki.Api
                 services.AddHostedService<LotoFacilWorkerBase>();
                 services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
                 services.AddHostedService<LotoFacilWorkerStatus>();
-                services.AddHostedService<LotoFacilWorkerDataModel>();
 
                 services.AddSingleton(AutoMapperConfigurations.Configure());
 
                 RepositoryConfigurations.RegisterServices(services);
                 ServiceConfigurations.RegisterServices(services);
                 ServiceSupplyConfiguration.RegisterServices(services);
-                ServicoMachineLearningConfiguration.RegisterServices(services);
             });
 
             builder.ConfigureWebHostDefaults(webBuilder =>
@@ -67,9 +65,6 @@ namespace LottoWiki.Api
 
                     var STATUS = services.GetRequiredService<LotoFacilWorkerStatus>();
                     STATUS.StartAsync(default).GetAwaiter().GetResult();
-
-                    var DATAMODEL = services.GetRequiredService<LotoFacilWorkerDataModel>();
-                    DATAMODEL.StartAsync(default).GetAwaiter().GetResult();
 
                     host.Run();
                 }
