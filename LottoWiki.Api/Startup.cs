@@ -27,8 +27,9 @@ namespace LottoWiki.Api
             });
 
             services.AddScoped<LotoFacilWorkerBase>();
-            services.AddScoped<LotoFacilWorkerSupplyOverDue>();
             services.AddScoped<LotoFacilWorkerStatus>();
+            services.AddScoped<LotoFacilWorkerSupplyOverDue>();
+            services.AddScoped<LotoFacilWorkerSupplyDoOver>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {

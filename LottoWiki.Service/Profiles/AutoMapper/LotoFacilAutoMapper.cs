@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using LottoWiki.Domain.Models.Base;
-using LottoWiki.Domain.Models.Entities;
+﻿using LottoWiki.Service.ViewModels.Entities;
 using LottoWiki.Service.ViewModels.Bases;
-using LottoWiki.Service.ViewModels.Entities;
+using LottoWiki.Domain.Models.Entities;
+using LottoWiki.Domain.Models.Base;
+using AutoMapper;
 
 namespace LottoWiki.Service.Profiles.AutoMapper
 {
@@ -11,7 +11,7 @@ namespace LottoWiki.Service.Profiles.AutoMapper
         public LotoFacilAutoMapper()
         {
             CreateMap<LotoFacil, LotoFacilViewModel>().ReverseMap();
-            CreateMap<LotoFacilStats, LotoFacilStatsViewModel>().ReverseMap();
+            CreateMap<LotoFacilHead, LotoFacilHeadViewModel>().ReverseMap();
         }
     }
 }

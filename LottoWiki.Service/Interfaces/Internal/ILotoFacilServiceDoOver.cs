@@ -3,7 +3,7 @@ using LottoWiki.Service.Interfaces.Base;
 
 namespace LottoWiki.Service.Interfaces.Internal
 {
-    public interface ILotoFacilServiceStatus : IBaseService<LotoFacilViewModelStatus, int>
+    public interface ILotoFacilServiceDoOver : IBaseService<LotoFacilViewModelDoOver, int>
     {
     }
 }

@@ -1,6 +1,6 @@
-﻿using AutoMapper;
+﻿using LottoWiki.Service.ViewModels.Entities;
 using LottoWiki.Domain.Models.Entities;
-using LottoWiki.Service.ViewModels.Entities;
+using AutoMapper;
 
 namespace LottoWiki.Service.Profiles.AutoMapper
 {

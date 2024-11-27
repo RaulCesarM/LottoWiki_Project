@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LottoWiki.Data.Migrations
 {
     [DbContext(typeof(LotofacilContext))]
-    [Migration("20241126152954_Name")]
+    [Migration("20241127160004_Name")]
     partial class Name
     {
         /// <inheritdoc />
@@ -187,6 +187,125 @@ namespace LottoWiki.Data.Migrations
                             LuaDoSorteio = "Crescente",
                             NomeMunicipioUFSorteio = "CRUZ ALTA, RS"
                         });
+                });
+
+            modelBuilder.Entity("LottoWiki.Domain.Models.Entities.LotoFacilDoOver", b =>
+                {
+                    b.Property<int>("Concurso")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConcursoAnterior")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProximoConcurso")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_01")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_02")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_03")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_04")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_05")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_06")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_07")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_08")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_09")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_10")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_11")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_12")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_13")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_14")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_15")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_16")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_17")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_18")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_19")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_20")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_21")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_22")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_23")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_24")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bola_25")
+                        .HasMaxLength(3)
+                        .HasColumnType("int");
+
+                    b.HasKey("Concurso", "ConcursoAnterior", "ProximoConcurso");
+
+                    b.ToTable("bola.repetida", (string)null);
                 });
 
             modelBuilder.Entity("LottoWiki.Domain.Models.Entities.LotoFacilOverdue", b =>

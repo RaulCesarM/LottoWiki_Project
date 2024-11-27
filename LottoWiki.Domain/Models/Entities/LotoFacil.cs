@@ -2,7 +2,7 @@
 
 namespace LottoWiki.Domain.Models.Entities
 {
-    public class LotoFacil : LotoFacilStats
+    public class LotoFacil : LotoFacilHead
     {
         public int Casa_01 { get; set; }
         public int Casa_02 { get; set; }

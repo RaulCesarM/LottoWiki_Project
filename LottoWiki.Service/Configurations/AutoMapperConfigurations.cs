@@ -11,6 +11,7 @@ namespace LottoWiki.Service.Configurations
             {
                 config.AddProfile(new LotoFacilAutoMapper());
                 config.AddProfile(new LotoFacilAutoMapperOverdue());
+                config.AddProfile(new LotoFacilAutoMapperDoOver());
                 config.AddProfile(new LotoFacilAutoMapperStatus());
             });
             return configMap.CreateMapper();

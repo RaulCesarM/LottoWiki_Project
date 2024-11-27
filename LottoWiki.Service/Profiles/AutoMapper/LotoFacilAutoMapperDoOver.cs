@@ -4,11 +4,11 @@ using AutoMapper;
 
 namespace LottoWiki.Service.Profiles.AutoMapper
 {
-    public class LotoFacilAutoMapperStatus : Profile
+    public class LotoFacilAutoMapperDoOver : Profile
     {
-        public LotoFacilAutoMapperStatus()
+        public LotoFacilAutoMapperDoOver()
         {
-            CreateMap<LotoFacilStatus, LotoFacilViewModelStatus>().ReverseMap();
+            CreateMap<LotoFacilDoOver, LotoFacilViewModelDoOver>().ReverseMap();
         }
     }
 }

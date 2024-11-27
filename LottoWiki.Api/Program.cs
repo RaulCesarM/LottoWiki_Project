@@ -33,8 +33,9 @@ namespace LottoWiki.Api
                 });
 
                 services.AddHostedService<LotoFacilWorkerBase>();
-                services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
                 services.AddHostedService<LotoFacilWorkerStatus>();
+                services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
+                services.AddHostedService<LotoFacilWorkerSupplyDoOver>();
 
                 services.AddSingleton(AutoMapperConfigurations.Configure());
 
@@ -60,11 +61,14 @@ namespace LottoWiki.Api
                     var BASE = services.GetRequiredService<LotoFacilWorkerBase>();
                     BASE.StartAsync(default).GetAwaiter().GetResult();
 
+                    var STATUS = services.GetRequiredService<LotoFacilWorkerStatus>();
+                    STATUS.StartAsync(default).GetAwaiter().GetResult();
+
                     var OVERDUE = services.GetRequiredService<LotoFacilWorkerSupplyOverDue>();
                     OVERDUE.StartAsync(default).GetAwaiter().GetResult();
 
-                    var STATUS = services.GetRequiredService<LotoFacilWorkerStatus>();
-                    STATUS.StartAsync(default).GetAwaiter().GetResult();
+                    var DOOVER = services.GetRequiredService<LotoFacilWorkerSupplyDoOver>();
+                    DOOVER.StartAsync(default).GetAwaiter().GetResult();
 
                     host.Run();
                 }

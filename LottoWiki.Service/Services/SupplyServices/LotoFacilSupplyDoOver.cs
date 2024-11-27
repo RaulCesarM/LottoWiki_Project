@@ -1,45 +1,48 @@
 ﻿using LottoWiki.Service.Interfaces.Internal;
-using LottoWiki.Service.Interfaces.Supply;
-using LottoWiki.Service.Utils;
 using LottoWiki.Service.ViewModels.Entities;
+using LottoWiki.Service.Interfaces.Supply;
 using Microsoft.Extensions.Logging;
+using LottoWiki.Service.Utils;
 
-namespace LottoWiki.Service.Services.LotoFacilSupply
+namespace LottoWiki.Service.Services.SupplyServices
 {
-    public class LotoFacilSupplyOverdue : ILotoFacilSupplyOverdue
+    public class LotoFacilSupplyDoOver : ILotoFacilSupplyDoOver
     {
+        private readonly ILogger<LotoFacilSupplyDoOver> _logger;
+        private readonly ILotoFacilServiceDoOver _dooverService;
         private readonly ILotoFacilService _baseService;
-        private readonly ILotoFacilServiceOverdue _overdueService;
-        private int NextOverdueId { get; set; }
-        private int CurrentBaseId { get; set; }
-        public LotoFacilViewModelOverdue LastOverDue { get; set; }
-        public LotoFacilViewModel LastBase { get; set; }
-        public LotoFacilViewModelOverdue NewOverDue { get; set; } = new();
-        public List<int> CalculatedBalls { get; set; } = [];
-        private readonly ILogger<LotoFacilSupplyOverdue> _logger;
 
-        public LotoFacilSupplyOverdue(ILotoFacilService services,
-                                      ILotoFacilServiceOverdue overdueServices,
-                                      ILogger<LotoFacilSupplyOverdue> logger)
+        private int NextDoOverId { get; set; }
+        private int CurrentBaseId { get; set; }
+
+        public LotoFacilViewModelDoOver LastDoOver { get; set; }
+        public LotoFacilViewModel LastBase { get; set; }
+        public LotoFacilViewModelDoOver NewDoOver { get; set; } = new();
+
+        public List<int> CalculatedBalls { get; set; } = [];
+
+        public LotoFacilSupplyDoOver(ILotoFacilService services,
+                                     ILotoFacilServiceDoOver dooverService,
+                                     ILogger<LotoFacilSupplyDoOver> logger)
         {
             _baseService = services;
-            _overdueService = overdueServices;
+            _dooverService = dooverService;
             _logger = logger;
         }
 
         public bool HasNext()
         {
             _logger.LogMethodInfo();
-            NextOverdueId = _overdueService.GetNextId();
-            if (!_baseService.Exists(NextOverdueId)) return false;
+            NextDoOverId = _dooverService.GetNextId();
+            if (!_baseService.Exists(NextDoOverId)) return false;
             Init();
             return true;
         }
 
         public void Init()
         {
-            LastOverDue = _overdueService.GetLast();
-            LastBase = _baseService.GetById(NextOverdueId);
+            LastDoOver = _dooverService.GetLast();
+            LastBase = _baseService.GetById(NextDoOverId);
             PopulateLockyBalls();
             Populate();
             Save().Wait();
@@ -53,7 +56,7 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
-                int ball = Convert.ToInt32(property.GetValue(LastOverDue));
+                int ball = Convert.ToInt32(property.GetValue(LastDoOver));
                 CalculatedBalls.Add(ball);
             }
 
@@ -67,7 +70,7 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
 
             for (int i = 0; i < 25; i++)
             {
-                CalculatedBalls[i] = luckyBalls.Contains(i + 1) ? 0 : CalculatedBalls[i] + 1;
+                CalculatedBalls[i] = luckyBalls.Contains(i + 1) ? 1 : CalculatedBalls[i] + 0;
             }
         }
 
@@ -78,18 +81,18 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
-                property.SetValue(NewOverDue, CalculatedBalls[i]);
+                property.SetValue(NewDoOver, CalculatedBalls[i]);
             }
-            NewOverDue.Concurso = LastBase.Concurso;
-            NewOverDue.ProximoConcurso = LastBase.ProximoConcurso;
-            NewOverDue.ConcursoAnterior = LastBase.ConcursoAnterior;
+            NewDoOver.Concurso = LastBase.Concurso;
+            NewDoOver.ProximoConcurso = LastBase.ProximoConcurso;
+            NewDoOver.ConcursoAnterior = LastBase.ConcursoAnterior;
         }
 
         private async Task Save()
         {
             try
             {
-                await _overdueService.Insert(NewOverDue);
+                await _dooverService.Insert(NewDoOver);
             }
             catch (Exception ex)
             {

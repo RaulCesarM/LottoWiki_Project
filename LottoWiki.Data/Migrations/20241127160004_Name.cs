@@ -82,6 +82,44 @@ namespace LottoWiki.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "bola.repetida",
+                columns: table => new
+                {
+                    Concurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    ConcursoAnterior = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    ProximoConcurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    Bola_01 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_02 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_03 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_04 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_05 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_06 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_07 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_08 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_09 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_10 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_11 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_12 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_13 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_14 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_15 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_16 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_17 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_18 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_19 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_20 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_21 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_22 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_23 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_24 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Bola_25 = table.Column<int>(type: "int", maxLength: 3, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_bola.repetida", x => new { x.Concurso, x.ConcursoAnterior, x.ProximoConcurso });
+                });
+
+            migrationBuilder.CreateTable(
                 name: "bola.status",
                 columns: table => new
                 {
@@ -158,6 +196,9 @@ namespace LottoWiki.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "bola.atraso");
+
+            migrationBuilder.DropTable(
+                name: "bola.repetida");
 
             migrationBuilder.DropTable(
                 name: "bola.status");

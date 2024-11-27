@@ -2,7 +2,7 @@
 
 namespace LottoWiki.Service.ViewModels.Entities
 {
-    public class LotoFacilViewModel : LotoFacilStatsViewModel
+    public class LotoFacilViewModel : LotoFacilHeadViewModel
     {
         public int Casa_01 { get; set; }
         public int Casa_02 { get; set; }

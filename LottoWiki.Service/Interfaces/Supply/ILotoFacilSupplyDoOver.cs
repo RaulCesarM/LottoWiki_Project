@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.Interfaces.Supply
 {
-    public interface ILotoFacilSupplyDataModel
+    public interface ILotoFacilSupplyDoOver
     {
         bool HasNext();
     }

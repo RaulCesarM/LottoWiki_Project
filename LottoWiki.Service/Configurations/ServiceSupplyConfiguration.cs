@@ -1,5 +1,6 @@
 ﻿using LottoWiki.Service.Interfaces.Supply;
 using LottoWiki.Service.Services.LotoFacilSupply;
+using LottoWiki.Service.Services.SupplyServices;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LottoWiki.Service.Configurations
@@ -10,6 +11,7 @@ namespace LottoWiki.Service.Configurations
         {
             builder.AddScoped<ILotoFacilSupply, LotoFacilSupply>();
             builder.AddScoped<ILotoFacilSupplyOverdue, LotoFacilSupplyOverdue>();
+            builder.AddScoped<ILotoFacilSupplyDoOver, LotoFacilSupplyDoOver>();
             builder.AddScoped<ILotoFacilSupplyStatus, LotoFacilSupplyStatus>();
         }
     }

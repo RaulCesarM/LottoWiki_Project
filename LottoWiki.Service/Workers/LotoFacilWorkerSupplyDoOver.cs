@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using LottoWiki.Service.Interfaces.Supply;
+﻿using LottoWiki.Service.Interfaces.Supply;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace LottoWiki.Service.Workers
 {
-    public class LotoFacilWorkerStatus(IServiceScopeFactory scopeFactory) : BackgroundService
+    public class LotoFacilWorkerSupplyDoOver(IServiceScopeFactory scopeFactory) : BackgroundService
     {
         private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
 
@@ -13,15 +13,15 @@ namespace LottoWiki.Service.Workers
             while (!stoppingToken.IsCancellationRequested)
             {
                 using var scope = _scopeFactory.CreateScope();
-                int timeDelay = InitWorkerStatus(scope);
+                int timeDelay = InitSupplyDoOver(scope);
                 await Task.Delay(timeDelay, stoppingToken);
             }
         }
 
-        private static int InitWorkerStatus(IServiceScope scope)
+        private static int InitSupplyDoOver(IServiceScope scope)
         {
             var serviceProvider = scope.ServiceProvider;
-            var supplyServices = serviceProvider.GetRequiredService<ILotoFacilSupplyStatus>();
+            var supplyServices = serviceProvider.GetRequiredService<ILotoFacilSupplyDoOver>();
             return supplyServices.HasNext() ? 1000 : 10000;
         }
     }

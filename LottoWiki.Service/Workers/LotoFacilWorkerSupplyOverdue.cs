@@ -1,5 +1,5 @@
-﻿using LottoWiki.Service.Interfaces.Supply;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using LottoWiki.Service.Interfaces.Supply;
 using Microsoft.Extensions.Hosting;
 
 namespace LottoWiki.Service.Workers

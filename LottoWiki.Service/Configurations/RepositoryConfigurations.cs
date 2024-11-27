@@ -13,6 +13,7 @@ namespace LottoWiki.Service.Repositories
             builder.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.AddScoped<ILotoFacilCommonRepository, LotoFacilRepository>();
             builder.AddScoped<ILotoFacilCommonRepositoryOverdue, LotoFacilRepositoryOverdue>();
+            builder.AddScoped<ILotoFacilCommonRepositoryDoOver, LotoFacilRepositoryDoOver>();
             builder.AddScoped<ILotoFacilCommonRepositoryStatus, LotoFacilRepositoryStatus>();
         }
     }
