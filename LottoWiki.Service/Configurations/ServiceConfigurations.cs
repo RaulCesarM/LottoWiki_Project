@@ -13,8 +13,11 @@ namespace LottoWiki.Service.QueryServices
             builder.AddScoped<ILotoFacilService, LotoFacilService>();
             builder.AddScoped<ILotoFacilServiceOverdue, LotoFacilServiceOverdue>();
             builder.AddScoped<ILotoFacilServiceStatus, LotoFacilServiceStatus>();
+            builder.AddScoped<ILotoFacilServiceDoOver, LotoFacilServiceDoOver>();
+
             builder.AddScoped<ILotoFacilQueryCorrelation, LotoFacilQueryCorrelation>();
             builder.AddScoped<ILotoFacilQueryOverdue, LotoFacilQueryOverdue>();
+            //  builder.AddScoped<ILotoFacilQueryDoOver, LotoFacilQueryDoOver>();
             builder.AddScoped<ILotoFacilQueryLunation, LofoFacilQueryLunation>();
             builder.AddScoped<ILotoFacilQueryStatus, LotoFacilQueryStatus>();
         }

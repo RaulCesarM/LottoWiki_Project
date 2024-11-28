@@ -178,6 +178,16 @@ namespace LottoWiki.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "bola.repetida",
+                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25" },
+                values: new object[,]
+                {
+                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0 },
+                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1 },
+                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "bola.status",
                 columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25" },
                 values: new object[,]

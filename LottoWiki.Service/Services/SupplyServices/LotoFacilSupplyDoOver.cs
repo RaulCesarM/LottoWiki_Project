@@ -70,7 +70,7 @@ namespace LottoWiki.Service.Services.SupplyServices
 
             for (int i = 0; i < 25; i++)
             {
-                CalculatedBalls[i] = luckyBalls.Contains(i + 1) ? 1 : CalculatedBalls[i] + 0;
+                CalculatedBalls[i] = luckyBalls.Contains(i + 1) ? 0 : CalculatedBalls[i] + 1;
             }
         }
 
