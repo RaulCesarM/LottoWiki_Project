@@ -1,9 +1,10 @@
-import { Component,  OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart, ChartTypeRegistry } from 'chart.js/auto';
 import { KatexService } from 'src/app/services/katex.service';
 import { MathService } from 'src/app/services/math.service';
 import { OcurrencesService } from 'src/app/services/ocurrences.service';
 import { OverdueService } from 'src/app/services/overdue.service';
+import { DoOverService } from 'src/app/services/doover.service';
 import { RankingService } from 'src/app/services/ranking.service';
 
 @Component({
@@ -23,17 +24,18 @@ export class ChartsRankingsComponent implements OnInit {
   isFormulaShow: boolean = false
   isOcurrenceActive: boolean = false;
   isOverdueActive: boolean = false;
+  isDoOverActive: boolean = false;
   isOutliersShow: boolean = true;
   originalData: any[] | undefined;
-  originalLabels: string[] | undefined;
-  originalDataSource: number[] | undefined;
-  outliersData: number[] | undefined;
+  originalLabels: string[] = [];
+  originalDataSource: number[] = [];
 
   constructor(
     private katexService: KatexService,
     private mathService: MathService,
     private rankingService: RankingService,
     private overdueService: OverdueService,
+    private dooverService: DoOverService,
     private ocurrencesService: OcurrencesService
   ) {}
 
@@ -45,9 +47,18 @@ export class ChartsRankingsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.isOcurrenceActive = true
-    this.originalDataSource = [...await this.ocurrencesService.getData()]    
-    this.showChart();  
-    this.initChart(); 
+    this.originalDataSource = [...await this.ocurrencesService.getData()]
+    this.originalLabels = Array.from({ length: 25 }, (_, i) => (i + 1).toString());
+    this.showChart();
+    this.initChart();
+  }
+
+  onScroll(event: WheelEvent): void {
+    // if (event.deltaY > 0) {
+    //   this.navigateToNextId();
+    // } else if (event.deltaY < 0) {
+    //   this.navigateToPreviousId();
+    // }
   }
   protected setOutLierInput(): void {
     if (!this.isOutliersShow && this.isFormulaShow) {
@@ -103,7 +114,7 @@ export class ChartsRankingsComponent implements OnInit {
       type: (type as keyof ChartTypeRegistry) || 'bar',
       data: {
         labels: [...this.rankingService.labelsDataSource],
-        datasets:[... this.rankingService.getDataSets()]      
+        datasets: [... this.rankingService.getDataSets()]
       },
       options: {
         responsive: true,
@@ -138,28 +149,38 @@ export class ChartsRankingsComponent implements OnInit {
   private setFlagsFalse(): void {
     this.isOcurrenceActive = false;
     this.isOverdueActive = false;
+    this.isDoOverActive = false;
   }
 
-  protected async updateDataSourceBasedOnEvent(event: string): Promise<void> {
-    if (event === 'ocurrences') {
+  protected async updateDataSourceBasedOnEvent(event: string): Promise<void> {   
+    if (event === 'ocurrences' && !this.isOcurrenceActive) {     
       this.setFlagsFalse();
       this.isOcurrenceActive = true;
-      this.originalDataSource = [... await this.ocurrencesService.getData()];
+      this.chartRanking.data.datasets[0].data = [... await this.ocurrencesService.getData()];
+      this.checkSorted();
+      this.updateChartAndTrendLines();
+      this.chartRanking.update();
     }
-    if (event === 'overdue') {
+    if (event === 'overdue' && !this.isOverdueActive) {      
       this.setFlagsFalse();
       this.isOverdueActive = true;
-      this.originalDataSource = [...await this.overdueService.getData()];
+      this.chartRanking.data.datasets[0].data = [...await this.overdueService.getData()];
+      // this.checkSorted();
+      this.updateChartAndTrendLines();
+      this.chartRanking.update();
     }
-
-    this.chartRanking.data.datasets[0].data = this.originalDataSource;
-    this.checkSorted();
-    this.updateChartAndTrendLines();
-    this.chartRanking.update();
+    if (event === 'doover' && !this.isDoOverActive) {     
+      this.setFlagsFalse();
+      this.isDoOverActive = true;
+      this.chartRanking.data.datasets[0].data = [...await this.dooverService.getData()];
+       this.checkSorted();
+      this.updateChartAndTrendLines();
+      this.chartRanking.update();
+    }
   }
 
-  initChart(): void{
-    this.chartRanking.data.datasets[0].data = this.originalDataSource;
+  initChart(): void {
+    this.chartRanking.data.datasets[0].data = [... this.originalDataSource];
     this.checkSorted();
     this.updateChartAndTrendLines();
     this.chartRanking.update();
@@ -213,19 +234,18 @@ export class ChartsRankingsComponent implements OnInit {
       this.unsort();
     }
   }
-  protected sort(): void {
+
+  private sort(): void {
     let data: number[] = this.chartRanking.data.datasets[0].data;
     const labels: string[] = this.chartRanking.data.labels;
     this.mathService.sort(data, labels);
-    this.updateChartAndTrendLines();
     this.chartRanking.update();
   }
 
-  protected unsort(): void {
+  private unsort(): void {
     let data: number[] = this.chartRanking.data.datasets[0].data;
     const labels: string[] = this.chartRanking.data.labels;
     this.mathService.unSort(data, labels);
-    this.updateChartAndTrendLines();
     this.chartRanking.update();
   }
 

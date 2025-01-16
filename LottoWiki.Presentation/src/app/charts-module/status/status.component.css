@@ -77,3 +77,14 @@ td:hover::after {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
+
+.summary-column {
+  background-color: rgb(243, 214, 214) !important;
+  border: 1px solid #151414; 
+  color: #0d0d0d;
+  text-align: center; 
+  pointer-events: none; 
+  background-color: inherit;  
+  font-size: 12px;
+}

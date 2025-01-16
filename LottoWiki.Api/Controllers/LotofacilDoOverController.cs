@@ -6,18 +6,18 @@ namespace LottoWiki.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LotoFacilOverDueController : ControllerBase
+    public class LotofacilDoOverController : ControllerBase
     {
-        private readonly ILotoFacilQueryOverdue _service;
-        private readonly ILogger<LotoFacilOverDueController> _logger;
+        private readonly ILotoFacilQueryDoOver _service;
+        private readonly ILogger<LotofacilDoOverController> _logger;
 
-        public LotoFacilOverDueController(ILotoFacilQueryOverdue service, ILogger<LotoFacilOverDueController> logger)
+        public LotofacilDoOverController(ILotoFacilQueryDoOver service, ILogger<LotofacilDoOverController> logger)
         {
             _service = service;
             _logger = logger;
         }
 
-        [HttpGet("OverDue")]
+        [HttpGet("DoOver")]
         [ProducesResponseType(typeof(int[]), 200)]
         [ProducesResponseType(500)]
         public IActionResult GetLast()

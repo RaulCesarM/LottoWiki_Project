@@ -16,7 +16,7 @@ export class RankingService  {
     getDataSets(): DataSets[] {
    return [
       new DataSets(
-        'Ocorrencias',
+        '',
         [],
         'rgba(55, 169, 245,0.5)',
         'rgba(75, 192, 192, 1)',

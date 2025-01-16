@@ -29,21 +29,23 @@ namespace LottoWiki.Api.Controllers
                 _logger.LogMethodWarning();
                 return NotFound();
             }
-            return Ok(id);
+            return Ok(response);
         }
 
-        [HttpGet("last")]
+        [HttpGet("lastId")]
         [ProducesResponseType(typeof(int), 200)]
         [ProducesResponseType(500)]
         public IActionResult GetLastId()
         {
-            int response = _service.GetLastId();
-            if (response == 0)
+            int id = _service.GetLastId();
+
+            if (id == 0)
             {
                 _logger.LogMethodWarning();
                 return NotFound();
             }
-            return Ok(response);
+
+            return Ok(id);
         }
     }
 }

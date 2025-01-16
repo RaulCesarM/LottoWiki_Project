@@ -10,11 +10,11 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
     {
         private readonly ILotoFacilServiceOverdue _baseServices;
         private readonly ILotoFacilServiceStatus _statusServices;
+        private readonly ILogger<LotoFacilSupplyStatus> _logger;
         private readonly bool _hasCurrentBaseId;
         private readonly bool _hasNextBaseId;
         private readonly int _currentId;
         private readonly int _nextId;
-        private readonly ILogger<LotoFacilSupplyStatus> _logger;
 
         private LotoFacilViewModelStatus NextStatus { get; set; }
         private LotoFacilViewModelOverdue LastOverDue { get; set; }

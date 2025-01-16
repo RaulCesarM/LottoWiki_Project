@@ -10,23 +10,25 @@ namespace LottoWiki.Service.Services.SupplyServices
     {
         private readonly ILogger<LotoFacilSupplyDoOver> _logger;
         private readonly ILotoFacilServiceDoOver _dooverService;
-        private readonly ILotoFacilService _baseService;
+        private readonly ILotoFacilServiceOverdue _overdueService;
 
         private int NextDoOverId { get; set; }
         private int CurrentBaseId { get; set; }
 
+        public LotoFacilViewModelOverdue LastOverDue { get; set; }
+
         public LotoFacilViewModelDoOver LastDoOver { get; set; }
-        public LotoFacilViewModel LastBase { get; set; }
         public LotoFacilViewModelDoOver NewDoOver { get; set; } = new();
 
-        public List<int> CalculatedBalls { get; set; } = [];
+        public List<int> OverdueCountage { get; set; } = [];
+        public List<int> DoOverCountage { get; set; } = [];
 
-        public LotoFacilSupplyDoOver(ILotoFacilService services,
-                                     ILotoFacilServiceDoOver dooverService,
+        public LotoFacilSupplyDoOver(ILotoFacilServiceDoOver dooverService,
+                                     ILotoFacilServiceOverdue overdueService,
                                      ILogger<LotoFacilSupplyDoOver> logger)
         {
-            _baseService = services;
             _dooverService = dooverService;
+            _overdueService = overdueService;
             _logger = logger;
         }
 
@@ -34,15 +36,15 @@ namespace LottoWiki.Service.Services.SupplyServices
         {
             _logger.LogMethodInfo();
             NextDoOverId = _dooverService.GetNextId();
-            if (!_baseService.Exists(NextDoOverId)) return false;
+            if (!_overdueService.Exists(NextDoOverId)) return false;
             Init();
             return true;
         }
 
         public void Init()
         {
+            LastOverDue = _overdueService.GetById(NextDoOverId);
             LastDoOver = _dooverService.GetLast();
-            LastBase = _baseService.GetById(NextDoOverId);
             PopulateLockyBalls();
             Populate();
             Save().Wait();
@@ -50,42 +52,47 @@ namespace LottoWiki.Service.Services.SupplyServices
 
         private void PopulateLockyBalls()
         {
-            List<int> luckyBalls = new List<int>();
+            for (int i = 0; i < 25; i++)
+            {
+                string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
+                var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
+                int ball = Convert.ToInt32(property.GetValue(LastOverDue));
+                OverdueCountage.Add(ball);
+            }
 
             for (int i = 0; i < 25; i++)
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
                 int ball = Convert.ToInt32(property.GetValue(LastDoOver));
-                CalculatedBalls.Add(ball);
-            }
-
-            for (int i = 0; i < 15; i++)
-            {
-                string propertyName = BallNameFormatter.FormatBallName("Casa", i + 1);
-                var property = typeof(LotoFacilViewModel).GetProperty(propertyName);
-                int luckyBall = Convert.ToInt32(property.GetValue(LastBase));
-                luckyBalls.Add(luckyBall);
+                DoOverCountage.Add(ball);
             }
 
             for (int i = 0; i < 25; i++)
             {
-                CalculatedBalls[i] = luckyBalls.Contains(i + 1) ? 0 : CalculatedBalls[i] + 1;
+                if (OverdueCountage[i] == 0)
+                {
+                    DoOverCountage[i] = DoOverCountage[i] + 1;
+                }
+                else
+                {
+                    DoOverCountage[i] = 0;
+                }
             }
         }
 
         private void Populate()
         {
             _logger.LogMethodInfo();
-            for (int i = 0; i < CalculatedBalls.Count; i++)
+            for (int i = 0; i < OverdueCountage.Count; i++)
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
-                property.SetValue(NewDoOver, CalculatedBalls[i]);
+                property.SetValue(NewDoOver, DoOverCountage[i]);
             }
-            NewDoOver.Concurso = LastBase.Concurso;
-            NewDoOver.ProximoConcurso = LastBase.ProximoConcurso;
-            NewDoOver.ConcursoAnterior = LastBase.ConcursoAnterior;
+            NewDoOver.Concurso = LastOverDue.Concurso;
+            NewDoOver.ProximoConcurso = LastOverDue.ProximoConcurso;
+            NewDoOver.ConcursoAnterior = LastOverDue.ConcursoAnterior;
         }
 
         private async Task Save()

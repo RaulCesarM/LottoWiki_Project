@@ -55,7 +55,7 @@ export class LunationService {
 
   public async populateDataSets(): Promise<void> {
     this.ocurrencesDataSet = new DataSets(
-      'Ocorrencias',
+      '',
       await this.getFullMoon(),
       'rgba(55, 169, 245,0.5)',
       'rgba(75, 192, 192, 1)',

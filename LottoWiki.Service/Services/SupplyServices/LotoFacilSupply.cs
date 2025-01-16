@@ -13,17 +13,17 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
     public class LotoFacilSupply : ILotoFacilSupply
     {
         private readonly HttpClient _client = new() { MaxResponseContentBufferSize = 1_000_000 };
+        private readonly ILogger<LotoFacilSupply> _logger;
         private readonly ILotoFacilService _services;
         private readonly int _nextContest;
         private readonly string _url;
-        private readonly ILogger<LotoFacilSupply> _logger;
 
         public LotoFacilViewModel LotofacilViewModel { get; set; } = new();
         public LotoFacilJson Deserialized { get; set; } = new();
 
         public LotoFacilSupply(ILotoFacilService services, IConfiguration configuration, ILogger<LotoFacilSupply> logger)
         {
-            _url = configuration.GetSection("LotofacilApi")["Url"];
+            _url = configuration.GetSection("LotofacilApi")["Url"];            
             _services = services;
             _nextContest = _services.GetNextId();
             _logger = logger;
@@ -68,12 +68,12 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
         {
             try
             {
-                LotofacilViewModel.Concurso = Deserialized.Numero;
-                LotofacilViewModel.ProximoConcurso = Deserialized.NumeroConcursoProximo;
-                LotofacilViewModel.ConcursoAnterior = Deserialized.NumeroConcursoAnterior;
-                LotofacilViewModel.DataApuracao = Deserialized.DataApuracao;
-                LotofacilViewModel.NomeMunicipioUFSorteio = Deserialized.NomeMunicipioUFSorteio;
                 LotofacilViewModel.LuaDoSorteio = CalculateMoonPhase.CalcularPhase(Deserialized.DataApuracao);
+                LotofacilViewModel.NomeMunicipioUFSorteio = Deserialized.NomeMunicipioUFSorteio;
+                LotofacilViewModel.ConcursoAnterior = Deserialized.NumeroConcursoAnterior;
+                LotofacilViewModel.ProximoConcurso = Deserialized.NumeroConcursoProximo;
+                LotofacilViewModel.DataApuracao = Deserialized.DataApuracao;
+                LotofacilViewModel.Concurso = Deserialized.Numero;
 
                 for (int i = 0; i < 15; i++)
                 {

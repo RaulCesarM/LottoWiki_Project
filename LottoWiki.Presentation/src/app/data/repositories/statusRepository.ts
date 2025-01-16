@@ -11,7 +11,7 @@ export class StatusRepository {
   constructor(private http: HttpClient) {}
 
   getLast(): Observable<any> {
-    return this.http.get<any>(`https://localhost:44344/api/LotoFacilStatus/last`);
+    return this.http.get<any>(`https://localhost:44344/api/LotoFacilStatus/lastId`);
   }
 
   getById(id: number): Observable<any> {
