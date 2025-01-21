@@ -1,5 +1,6 @@
 ﻿using LottoWiki.Api.Configurations;
 using LottoWiki.Service.Interfaces.External;
+using LottoWiki.Service.ViewModels.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LottoWiki.Api.Controllers
@@ -18,12 +19,27 @@ namespace LottoWiki.Api.Controllers
         }
 
         [HttpGet("OverDue")]
-        [ProducesResponseType(typeof(int[]), 200)]
+        [ProducesResponseType(typeof(LotoFacilOverDueSmalViewModel), 200)]
         [ProducesResponseType(500)]
         public IActionResult GetLast()
         {
             _logger.LogMethodInfo();
-            int[] response = _service.GetLast();
+            LotoFacilOverDueSmalViewModel response = _service.GetLast();
+            if (response == null)
+            {
+                _logger.LogMethodWarning();
+                return NotFound();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet("OverDue/{id}")]
+        [ProducesResponseType(typeof(LotoFacilOverDueSmalViewModel), 200)]
+        [ProducesResponseType(500)]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            _logger.LogMethodInfo();
+            LotoFacilOverDueSmalViewModel response = _service.GetById(id);
             if (response == null)
             {
                 _logger.LogMethodWarning();

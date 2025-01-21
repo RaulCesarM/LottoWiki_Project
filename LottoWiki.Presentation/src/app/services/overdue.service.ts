@@ -1,13 +1,16 @@
 import { Injectable } from "@angular/core";
 import { OverdueRepository } from "../data/repositories/overdueRepository";
 import { firstValueFrom } from "rxjs";
+import { OverdueSmall } from '../models/overdueSmall';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OverdueService {
-  private dataCache: number[] | null = null;
-
+  private dataCache: OverdueSmall | null = null;
+ 
   constructor(private repository: OverdueRepository) {}
 
   async preloadData(): Promise<void> {
@@ -21,14 +24,14 @@ export class OverdueService {
     }
   }
 
-  async getData(): Promise<number[]> {
+  async getData(): Promise<OverdueSmall> {
     try {
-      let data = await firstValueFrom(this.repository.getData());
+      let data: OverdueSmall = await firstValueFrom(this.repository.getData());
       this.dataCache = data;
-      if (!data) {
-         data = this.dataCache;
+      if (!data.atrasosOrdenado) {
+        data = this.dataCache;
       }
-      return data;
+      return data
     } catch (error) {
       console.error('Error fetching overdue data:', error);
       throw error;

@@ -29,6 +29,7 @@ export class ChartsRankingsComponent implements OnInit {
   originalData: any[] | undefined;
   originalLabels: string[] = [];
   originalDataSource: number[] = [];
+  concurso: number = 0;
 
   constructor(
     private katexService: KatexService,
@@ -61,52 +62,52 @@ export class ChartsRankingsComponent implements OnInit {
     // }
   }
   protected setOutLierInput(): void {
-    if (!this.isOutliersShow && this.isFormulaShow) {
-      const expression: string = `\\text{Outlier} = ${this.outlierInputValue.toString()}`;
-      this.katexService.renderMathExpression(expression, 'outlierKatex');
-    } else {
-      this.katexService.renderMathExpression('', 'outlierKatex');
-    }
+    // if (!this.isOutliersShow && this.isFormulaShow) {
+    //   const expression: string = `\\text{Outlier} = ${this.outlierInputValue.toString()}`;
+    //   this.katexService.renderMathExpression(expression, 'outlierKatex');
+    // } else {
+    //   this.katexService.renderMathExpression('', 'outlierKatex');
+    // }
   }
 
   private setLogarithmicTrendLineExpression(): void {
-    if (this.isLogarithmLineDataTrendLineShow && this.isFormulaShow) {
-      this.logaritmicTrendLineExpression = this.katexService.getLogarithmicTrendLineFormula();
-      this.katexService.renderMathExpression(this.logaritmicTrendLineExpression, 'linhaDeTendenciaLogaritmica');
-    } else {
-      this.logaritmicTrendLineExpression = '';
-      this.katexService.renderMathExpression('', 'linhaDeTendenciaLogaritmica');
-    }
+    // if (this.isLogarithmLineDataTrendLineShow && this.isFormulaShow) {
+    //   this.logaritmicTrendLineExpression = this.katexService.getLogarithmicTrendLineFormula();
+    //   this.katexService.renderMathExpression(this.logaritmicTrendLineExpression, 'linhaDeTendenciaLogaritmica');
+    // } else {
+    //   this.logaritmicTrendLineExpression = '';
+    //   this.katexService.renderMathExpression('', 'linhaDeTendenciaLogaritmica');
+    // }
   }
 
   private setAritmeticTrendLineExpression(): void {
-    if (this.isArithmeticTrendLineShow && this.isFormulaShow) {
-      this.arithmeticTrendLineExpression = this.katexService.getArithmeticTrendLineFormula();
-      this.katexService.renderMathExpression(this.arithmeticTrendLineExpression, 'linhaDeTendenciaAritimetica');
-    } else {
-      this.arithmeticTrendLineExpression = '';
-      this.katexService.renderMathExpression('', 'linhaDeTendenciaAritimetica');
-    }
+    // if (this.isArithmeticTrendLineShow && this.isFormulaShow) {
+    //   this.arithmeticTrendLineExpression = this.katexService.getArithmeticTrendLineFormula();
+    //   this.katexService.renderMathExpression(this.arithmeticTrendLineExpression, 'linhaDeTendenciaAritimetica');
+    // } else {
+    //   this.arithmeticTrendLineExpression = '';
+    //   this.katexService.renderMathExpression('', 'linhaDeTendenciaAritimetica');
+    // }
   }
 
   private setExponentialTrendLineExpression(): void {
-    if (this.isExponentialTrendLineShow && this.isFormulaShow) {
-      this.exponetialTrendLineExpression = this.katexService.getExponentialTrendLineFormula();
-      this.katexService.renderMathExpression(this.exponetialTrendLineExpression, 'linhaTendenciaFormula');
-    } else {
-      this.exponetialTrendLineExpression = '';
-      this.katexService.renderMathExpression('', 'linhaTendenciaFormula');
-    }
+    // if (this.isExponentialTrendLineShow && this.isFormulaShow) {
+    //   this.exponetialTrendLineExpression = this.katexService.getExponentialTrendLineFormula();
+    //   this.katexService.renderMathExpression(this.exponetialTrendLineExpression, 'linhaTendenciaFormula');
+    // } else {
+    //   this.exponetialTrendLineExpression = '';
+    //   this.katexService.renderMathExpression('', 'linhaTendenciaFormula');
+    // }
   }
 
   private setAvaregeExpression(): void {
-    if (this.isAvaregeShow && this.isFormulaShow) {
-      this.avaregeExpression = this.katexService.getSimpleArithmethicMeanFormula();
-      this.katexService.renderMathExpression(this.avaregeExpression, 'media');
-    } else {
-      this.avaregeExpression = '';
-      this.katexService.renderMathExpression('', 'media');
-    }
+    // if (this.isAvaregeShow && this.isFormulaShow) {
+    //   this.avaregeExpression = this.katexService.getSimpleArithmethicMeanFormula();
+    //   this.katexService.renderMathExpression(this.avaregeExpression, 'media');
+    // } else {
+    //   this.avaregeExpression = '';
+    //   this.katexService.renderMathExpression('', 'media');
+    // }
   }
 
   private showChart(type?: string): void {
@@ -135,10 +136,25 @@ export class ChartsRankingsComponent implements OnInit {
           },
         },
         plugins: {
+          title: {
+            display: true,
+            // text: `Concurso: ${this.concurso}`, // Use a variável concurso como título
+            // font: {
+            //   size: 18,
+            //   family: 'Arial, sans-serif',
+            //   weight: 'bold',
+            // },
+            // color: '#333', // Cor do título
+            // padding: {
+            //   top: 10,
+            //   bottom: 30,
+            // },
+            },
           legend: {
             display: false,
           },
         },
+        
       },
     });
 
@@ -164,7 +180,9 @@ export class ChartsRankingsComponent implements OnInit {
     if (event === 'overdue' && !this.isOverdueActive) {      
       this.setFlagsFalse();
       this.isOverdueActive = true;
-      this.chartRanking.data.datasets[0].data = [...await this.overdueService.getData()];
+      let smallModel = await this.overdueService.getData();
+      this.chartRanking.data.datasets[0].data = [...smallModel.atrasosOrdenado];
+      this.concurso = smallModel.concurso
       // this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
@@ -214,10 +232,11 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   protected toggleShowFormula(): void {
-    this.isFormulaShow = !this.isFormulaShow;
+    //this.isFormulaShow = !this.isFormulaShow;
+    this.isFormulaShow = false
     this.setAritmeticTrendLineExpression()
     this.setLogarithmicTrendLineExpression()
-    this.setAvaregeExpression()
+   // this.setAvaregeExpression()
     this.setExponentialTrendLineExpression()
     this.setOutLierInput()
   }

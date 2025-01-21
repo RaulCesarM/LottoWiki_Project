@@ -1,74 +1,104 @@
 <div class="container-fluid" style="max-height: 90vh;" (wheel)="onScroll($event)">
+  <div class="conc">        
+    <p id="media">Concurso: {{ concurso }}</p>         
+</div>
   <div class="row">
-    <fieldset>
-      <button mat-button (click)="toggleSorted()" [class.clicked]="isSorted" matTooltip="Ordenar ">
-        <span><img src="assets/ORDENAR-.png" width="30px"><span class="dot"></span></span>
-      </button>      
-      <button mat-button (click)="updateDataSourceBasedOnEvent('ocurrences')" [class.clicked]="isOcurrenceActive" matTooltip="Ocorrencias">
-        <span>
-          <img src="assets/CONTAGEM.png" width="30px">        
-          <span class="dot">
+    <div class="col">
+      <fieldset class="button-fieldset">
+        <button mat-button (click)="toggleSorted()" [class.clicked]="isSorted" matTooltip="Ordenar ">
+          <span><img src="assets/ORDENAR-.png" width="30px"><span class="dot"></span></span>
+        </button>
+        <button mat-button (click)="updateDataSourceBasedOnEvent('ocurrences')" [class.clicked]="isOcurrenceActive"
+          matTooltip="Ocorrencias">
+          <span>
+            <img src="assets/CONTAGEM.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('overdue')" [class.clicked]="isOverdueActive" matTooltip="Atrasados">
-        <span>
-          <img src="assets/letra-a.png" width="30px">
-          <span class="dot">
+        </button>
+        <button mat-button (click)="updateDataSourceBasedOnEvent('overdue')" [class.clicked]="isOverdueActive"
+          matTooltip="Atrasados">
+          <span>
+            <img src="assets/letra-a.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSourceBasedOnEvent('doover')" [class.clicked]="isDoOverActive" matTooltip="Repetidos">
-        <span>
-          <img src="assets/letra-r.png" width="30px">
-          <span class="dot">
+        </button>
+        <button mat-button (click)="updateDataSourceBasedOnEvent('doover')" [class.clicked]="isDoOverActive"
+          matTooltip="Repetidos">
+          <span>
+            <img src="assets/letra-r.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="toggleAvarege()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media">
-        <span>
-          <img src="assets/MEDIA-.png" width="30px">
-          <span class="dot">
+        </button>
+        <button mat-button (click)="toggleAvarege()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media">
+          <span>
+            <img src="assets/MEDIA.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="toggleExponentialTrendLine()" [class.clicked]="isExponentialTrendLineShow" matTooltip="Linha de tendencia Exponencial">
-        <span>
-          <img src="assets/grafico.png" width="30px">
-          <span class="dot">
+        </button>
+        <button mat-button (click)="toggleExponentialTrendLine()" [class.clicked]="isExponentialTrendLineShow"
+          matTooltip="Linha de tendencia Exponencial">
+          <span>
+            <img src="assets/EXPONENCIAL.png" width="30px">
+            <span class="dot">
 
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="toggleArithmeticTrendLine()" [class.clicked]="isArithmeticTrendLineShow" matTooltip="Linha de tendencia Aritmetica">
-        <span>
-          <img src="assets/crescimento.png" width="30px">
-          <span class="dot">
+        </button>
+        <button mat-button (click)="toggleArithmeticTrendLine()" [class.clicked]="isArithmeticTrendLineShow"
+          matTooltip="Linha de tendencia Aritmetica">
+          <span>
+            <img src="assets/ARITMETICO.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="toggleLogarithmTrendLine()" [class.clicked]="isLogarithmLineDataTrendLineShow" matTooltip="Linha de tendencia logaritmica">
-        <span>
-          <img src="assets/outlier.png" width="30px">
-          <span class="dot">
+        </button>
+        <button mat-button (click)="toggleLogarithmTrendLine()" [class.clicked]="isLogarithmLineDataTrendLineShow"
+          matTooltip="Linha de tendencia logaritmica">
+          <span>
+            <img src="assets/LOGARITMO.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>
-      <button mat-button (click)="toggleShowFormula()" [class.clicked]="isFormulaShow" matTooltip="Linha de tendencia logaritmica">
-        <span>
-          <img src="assets/simbolo-matematico-da-funcao.png" width="30px">
-          <span class="dot">
+        </button>
+        <!-- <button mat-button (click)="toggleShowFormula()" [class.clicked]="isFormulaShow"
+          matTooltip="Linha de tendencia logaritmica">
+          <span>
+            <img src="assets/simbolo-matematico-da-funcao.png" width="30px">
+            <span class="dot">
+            </span>
           </span>
-        </span>
-      </button>     
-    </fieldset>
+        </button> -->
+        <button mat-button (click)="toggleShowFormula()" [class.clicked]="isFormulaShow" matTooltip="CONCURSO ANTERIOR">
+          <span>
+            <img src="assets/ANTERIOR.png" width="30px">
+            <span class="dot">
+            </span>
+          </span>
+        </button>
+        <button mat-button (click)="toggleShowFormula()" [class.clicked]="isFormulaShow" matTooltip="CONCURSO ANTERIOR">
+          <span>
+            <img src="assets/PROXIMO.png" width="30px">
+            <span class="dot">
+            </span>
+          </span>
+        </button>      
+      </fieldset>
+    </div>
+   
   </div>
 
   <div class="row ">
+
     <div class="col">
       <fieldset class="center-fieldset">
+
         <p class="chart-container">
-          <canvas id="canvas" width="350px" height="300px">{{chartRanking}}</canvas>
+
+          <canvas id="canvas" width="250px" height="250px">{{chartRanking}}</canvas>
         </p>
         <div class="linhaTendenciaFormula-background">
           <div id="linhaTendenciaFormula"> </div>
