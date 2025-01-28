@@ -9,9 +9,9 @@ namespace LottoWiki.Service.Services.InternalServices
     public class LotoFacilServiceOverdue : ILotoFacilServiceOverdue
     {
         private readonly IMapper _mapper;
-        private readonly ILotoFacilCommonRepositoryOverdue _repository;
+        private readonly ILotoFacilRepositoryOverdue _repository;
 
-        public LotoFacilServiceOverdue(ILotoFacilCommonRepositoryOverdue repository, IMapper mapper)
+        public LotoFacilServiceOverdue(ILotoFacilRepositoryOverdue repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

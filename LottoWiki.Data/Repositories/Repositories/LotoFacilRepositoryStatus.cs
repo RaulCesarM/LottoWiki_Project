@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LottoWiki.Data.Repositories.Repositories
 {
-    public class LotoFacilRepositoryStatus : BaseRepository<LotoFacilStatus>, ILotoFacilCommonRepositoryStatus
+    public class LotoFacilRepositoryStatus : Repository<LotoFacilStatus>, ILotoFacilRepositoryStatus
     {
         private readonly LotofacilContext _context;
 

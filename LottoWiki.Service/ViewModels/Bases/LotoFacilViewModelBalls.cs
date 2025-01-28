@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.ViewModels.Bases
 {
-    public class LotoFacilBallsViewModel<T>
+    public class LotoFacilViewModelBalls<T>
     {
         public T Bola_01 { get; set; }
         public T Bola_02 { get; set; }
@@ -28,7 +28,7 @@
         public T Bola_24 { get; set; }
         public T Bola_25 { get; set; }
 
-        public LotoFacilBallsViewModel()
+        public LotoFacilViewModelBalls()
         {
         }
     }

@@ -2,7 +2,7 @@
 
 namespace LottoWiki.Service.ViewModels.Entities
 {
-    public class LotoFacilViewModelOverdue : LotoFacilBallsViewModel<int>
+    public class LotoFacilViewModelOverdue : LotoFacilViewModelBalls<int>
     {
         public int Concurso { get; set; }
         public int ConcursoAnterior { get; set; }

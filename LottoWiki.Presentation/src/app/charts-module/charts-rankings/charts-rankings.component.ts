@@ -6,6 +6,7 @@ import { OcurrencesService } from 'src/app/services/ocurrences.service';
 import { OverdueService } from 'src/app/services/overdue.service';
 import { DoOverService } from 'src/app/services/doover.service';
 import { RankingService } from 'src/app/services/ranking.service';
+import { LotoFacilSmall } from 'src/app/models/lotoFacilSmall';
 
 @Component({
   selector: 'app-charts-rankings',
@@ -48,66 +49,11 @@ export class ChartsRankingsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.isOcurrenceActive = true
-    this.originalDataSource = [...await this.ocurrencesService.getData()]
+    const smallModel: LotoFacilSmall = await this.ocurrencesService.getData(); 
+    this.originalDataSource = [... smallModel.values]
     this.originalLabels = Array.from({ length: 25 }, (_, i) => (i + 1).toString());
     this.showChart();
     this.initChart();
-  }
-
-  onScroll(event: WheelEvent): void {
-    // if (event.deltaY > 0) {
-    //   this.navigateToNextId();
-    // } else if (event.deltaY < 0) {
-    //   this.navigateToPreviousId();
-    // }
-  }
-  protected setOutLierInput(): void {
-    // if (!this.isOutliersShow && this.isFormulaShow) {
-    //   const expression: string = `\\text{Outlier} = ${this.outlierInputValue.toString()}`;
-    //   this.katexService.renderMathExpression(expression, 'outlierKatex');
-    // } else {
-    //   this.katexService.renderMathExpression('', 'outlierKatex');
-    // }
-  }
-
-  private setLogarithmicTrendLineExpression(): void {
-    // if (this.isLogarithmLineDataTrendLineShow && this.isFormulaShow) {
-    //   this.logaritmicTrendLineExpression = this.katexService.getLogarithmicTrendLineFormula();
-    //   this.katexService.renderMathExpression(this.logaritmicTrendLineExpression, 'linhaDeTendenciaLogaritmica');
-    // } else {
-    //   this.logaritmicTrendLineExpression = '';
-    //   this.katexService.renderMathExpression('', 'linhaDeTendenciaLogaritmica');
-    // }
-  }
-
-  private setAritmeticTrendLineExpression(): void {
-    // if (this.isArithmeticTrendLineShow && this.isFormulaShow) {
-    //   this.arithmeticTrendLineExpression = this.katexService.getArithmeticTrendLineFormula();
-    //   this.katexService.renderMathExpression(this.arithmeticTrendLineExpression, 'linhaDeTendenciaAritimetica');
-    // } else {
-    //   this.arithmeticTrendLineExpression = '';
-    //   this.katexService.renderMathExpression('', 'linhaDeTendenciaAritimetica');
-    // }
-  }
-
-  private setExponentialTrendLineExpression(): void {
-    // if (this.isExponentialTrendLineShow && this.isFormulaShow) {
-    //   this.exponetialTrendLineExpression = this.katexService.getExponentialTrendLineFormula();
-    //   this.katexService.renderMathExpression(this.exponetialTrendLineExpression, 'linhaTendenciaFormula');
-    // } else {
-    //   this.exponetialTrendLineExpression = '';
-    //   this.katexService.renderMathExpression('', 'linhaTendenciaFormula');
-    // }
-  }
-
-  private setAvaregeExpression(): void {
-    // if (this.isAvaregeShow && this.isFormulaShow) {
-    //   this.avaregeExpression = this.katexService.getSimpleArithmethicMeanFormula();
-    //   this.katexService.renderMathExpression(this.avaregeExpression, 'media');
-    // } else {
-    //   this.avaregeExpression = '';
-    //   this.katexService.renderMathExpression('', 'media');
-    // }
   }
 
   private showChart(type?: string): void {
@@ -128,7 +74,7 @@ export class ChartsRankingsComponent implements OnInit {
             },
           },
           y: {
-            beginAtZero: false,
+            beginAtZero: true,
             offset: true,
             grid: {
               display: true,
@@ -138,17 +84,6 @@ export class ChartsRankingsComponent implements OnInit {
         plugins: {
           title: {
             display: true,
-            // text: `Concurso: ${this.concurso}`, // Use a variável concurso como título
-            // font: {
-            //   size: 18,
-            //   family: 'Arial, sans-serif',
-            //   weight: 'bold',
-            // },
-            // color: '#333', // Cor do título
-            // padding: {
-            //   top: 10,
-            //   bottom: 30,
-            // },
             },
           legend: {
             display: false,
@@ -172,7 +107,9 @@ export class ChartsRankingsComponent implements OnInit {
     if (event === 'ocurrences' && !this.isOcurrenceActive) {     
       this.setFlagsFalse();
       this.isOcurrenceActive = true;
-      this.chartRanking.data.datasets[0].data = [... await this.ocurrencesService.getData()];
+      let smallModel = await this.ocurrencesService.getData() ;
+     this.chartRanking.data.datasets[0].data =  [... smallModel.values];
+      this.concurso = smallModel.concurso
       this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
@@ -181,16 +118,18 @@ export class ChartsRankingsComponent implements OnInit {
       this.setFlagsFalse();
       this.isOverdueActive = true;
       let smallModel = await this.overdueService.getData();
-      this.chartRanking.data.datasets[0].data = [...smallModel.atrasosOrdenado];
+      this.chartRanking.data.datasets[0].data = [... smallModel.values];
       this.concurso = smallModel.concurso
-      // this.checkSorted();
+      this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
     }
     if (event === 'doover' && !this.isDoOverActive) {     
       this.setFlagsFalse();
       this.isDoOverActive = true;
-      this.chartRanking.data.datasets[0].data = [...await this.dooverService.getData()];
+      let smallModel = await this.dooverService.getData();
+      this.chartRanking.data.datasets[0].data = [... smallModel.values];
+      this.concurso = smallModel.concurso
        this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
@@ -232,13 +171,8 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   protected toggleShowFormula(): void {
-    //this.isFormulaShow = !this.isFormulaShow;
+   this.isFormulaShow = !this.isFormulaShow;
     this.isFormulaShow = false
-    this.setAritmeticTrendLineExpression()
-    this.setLogarithmicTrendLineExpression()
-   // this.setAvaregeExpression()
-    this.setExponentialTrendLineExpression()
-    this.setOutLierInput()
   }
 
   protected toggleSorted(): void {
@@ -270,8 +204,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   protected toggleArithmeticTrendLine(): void {
     this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
-    this.updateChartAndTrendLines();
-    this.setAritmeticTrendLineExpression()
+    this.updateChartAndTrendLines();  
   }
 
   private async addArithmeticTrendLine(): Promise<void> {
@@ -290,8 +223,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   protected toggleExponentialTrendLine(): void {
     this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
-    this.updateChartAndTrendLines();
-    this.setExponentialTrendLineExpression();
+    this.updateChartAndTrendLines();  
   }
 
   private async addExponentialArithmeticTrendLine(): Promise<void> {
@@ -310,8 +242,7 @@ export class ChartsRankingsComponent implements OnInit {
 
   protected toggleLogarithmTrendLine(): void {
     this.isLogarithmLineDataTrendLineShow = !this.isLogarithmLineDataTrendLineShow;
-    this.updateChartAndTrendLines();
-    this.setLogarithmicTrendLineExpression()
+    this.updateChartAndTrendLines();   
   }
 
   private async addLogarithmTrendLine(): Promise<void> {
@@ -329,8 +260,7 @@ export class ChartsRankingsComponent implements OnInit {
   }
 
   protected toggleAvarege(): void {
-    this.isAvaregeShow = !this.isAvaregeShow;
-    this.setAvaregeExpression();
+    this.isAvaregeShow = !this.isAvaregeShow;   
     this.updateChartAndTrendLines();
   }
 

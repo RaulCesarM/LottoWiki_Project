@@ -9,9 +9,9 @@ namespace LottoWiki.Service.Services.InternalServices
     public class LotoFacilServiceDoOver : ILotoFacilServiceDoOver
     {
         private readonly IMapper _mapper;
-        private readonly ILotoFacilCommonRepositoryDoOver _repository;
+        private readonly ILotoFacilRepositoryDoOver _repository;
 
-        public LotoFacilServiceDoOver(ILotoFacilCommonRepositoryDoOver repository, IMapper mapper)
+        public LotoFacilServiceDoOver(ILotoFacilRepositoryDoOver repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

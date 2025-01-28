@@ -34,13 +34,13 @@ namespace LottoWiki.Api.Controllers
         }
 
         [HttpGet("places/{key}")]
-        [ProducesResponseType(typeof(LotoFacilViewModelCorrelationPlaces), 200)]
+        [ProducesResponseType(typeof(LotoFacilViewModelCorrelationFriends), 200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public IActionResult GetByKey([FromRoute] int key)
         {
             _logger.LogMethodInfo();
-            LotoFacilViewModelCorrelationPlaces correlations = _service.GetTopCorrelationsForTarget(key);
+            LotoFacilViewModelCorrelationFriends correlations = _service.GetTopCorrelationsForTarget(key);
             if (correlations == null)
             {
                 _logger.LogMethodWarning();

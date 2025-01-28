@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Domain.Interfaces.Base
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         Task Insert(TEntity entity);
 

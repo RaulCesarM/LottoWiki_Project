@@ -1,7 +1,11 @@
-﻿namespace LottoWiki.Service.Interfaces.External
+﻿using LottoWiki.Service.ViewModels.Entities;
+
+namespace LottoWiki.Service.Interfaces.External
 {
     public interface ILotoFacilQueryDoOver
     {
-        int[] GetLast();
+        LotoFacilViewModelSmal GetLast();
+
+        LotoFacilViewModelSmal GetById(int id);
     }
 }

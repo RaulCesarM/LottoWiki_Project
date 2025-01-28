@@ -7,9 +7,9 @@ namespace LottoWiki.Service.Services.ExternalServices
 {
     public class LotoFacilQueryStatus : ILotoFacilQueryStatus
     {
-        private readonly ILotoFacilCommonRepositoryStatus _repository;
+        private readonly ILotoFacilRepositoryStatus _repository;
 
-        public LotoFacilQueryStatus(ILotoFacilCommonRepositoryStatus repository)
+        public LotoFacilQueryStatus(ILotoFacilRepositoryStatus repository)
         {
             _repository = repository;
         }

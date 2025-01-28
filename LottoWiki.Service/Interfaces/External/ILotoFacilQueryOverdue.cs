@@ -4,8 +4,8 @@ namespace LottoWiki.Service.Interfaces.External
 {
     public interface ILotoFacilQueryOverdue
     {
-        LotoFacilOverDueSmalViewModel GetLast();
+        LotoFacilViewModelSmal GetLast();
 
-        LotoFacilOverDueSmalViewModel GetById(int id);
+        LotoFacilViewModelSmal GetById(int id);
     }
 }

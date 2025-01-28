@@ -2,24 +2,26 @@
 using LottoWiki.Domain.Models.Entities;
 using LottoWiki.Service.Interfaces.External;
 using LottoWiki.Service.Utils;
+using LottoWiki.Service.ViewModels.Entities;
 
 namespace LottoWiki.Service.Services.ExternalServices
 {
     public class LotoFacilQueryOcurrences : ILotoFacilQueryOcurrences
     {
-        private readonly ILotoFacilCommonRepository _repository;
+        private readonly ILotoFacilRepository _repository;
 
-        public LotoFacilQueryOcurrences(ILotoFacilCommonRepository repository)
+        public LotoFacilQueryOcurrences(ILotoFacilRepository repository)
         {
             _repository = repository;
         }
 
-        public int[] GetLast()
+        public LotoFacilViewModelSmal GetById(int id)
         {
-            int[] occurrencesValues = new int[25];
-            List<LotoFacil> lotoFacils = _repository.GetInRangeAsync(20).Result;
+            int[] values = new int[25];
+            List<LotoFacil> response = _repository.GetInRangeFromConcursoAsync(id, 20).Result;
+            var small = new LotoFacilViewModelSmal();
 
-            foreach (var lotoFacil in lotoFacils)
+            foreach (var lotoFacil in response)
             {
                 for (int j = 1; j <= 15; j++)
                 {
@@ -29,12 +31,38 @@ namespace LottoWiki.Service.Services.ExternalServices
 
                     if (ball >= 1 && ball <= 25)
                     {
-                        occurrencesValues[ball - 1]++;
+                        values[ball - 1]++;
                     }
                 }
             }
+            small.Concurso = response.LastOrDefault().Concurso;
+            small.Values = values;
+            return small;
+        }
 
-            return occurrencesValues;
+        public LotoFacilViewModelSmal GetLast()
+        {
+            int[] values = new int[25];
+            List<LotoFacil> response = _repository.GetInRangeAsync(20).Result;
+            var small = new LotoFacilViewModelSmal();
+
+            foreach (var lotoFacil in response)
+            {
+                for (int j = 1; j <= 15; j++)
+                {
+                    string propertyName = BallNameFormatter.FormatBallName("Casa", j);
+                    var property = typeof(LotoFacil).GetProperty(propertyName);
+                    int ball = (int)property.GetValue(lotoFacil);
+
+                    if (ball >= 1 && ball <= 25)
+                    {
+                        values[ball - 1]++;
+                    }
+                }
+            }
+            small.Concurso = response.LastOrDefault().Concurso;
+            small.Values = values;
+            return small;
         }
     }
 }

@@ -2,32 +2,57 @@
 using LottoWiki.Domain.Models.Entities;
 using LottoWiki.Service.Interfaces.External;
 using LottoWiki.Service.Utils;
+using LottoWiki.Service.ViewModels.Entities;
 
 namespace LottoWiki.Service.Services.ExternalServices
 {
     public class LotoFacilQueryDoOver : ILotoFacilQueryDoOver
     {
-        private readonly ILotoFacilCommonRepositoryDoOver _repository;
+        private readonly ILotoFacilRepositoryDoOver _repository;
 
-        public LotoFacilQueryDoOver(ILotoFacilCommonRepositoryDoOver repository)
+        public LotoFacilQueryDoOver(ILotoFacilRepositoryDoOver repository)
         {
             _repository = repository;
         }
 
-        public int[] GetLast()
+        public LotoFacilViewModelSmal GetById(int id)
         {
             int[] values = new int[25];
-            var lastDoOver = _repository.GetLast();
+            var response = _repository.GetById(id);
+            var small = new LotoFacilViewModelSmal();
 
             for (int i = 0; i < 25; i++)
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilOverdue).GetProperty(propertyName);
-                int ball = Convert.ToInt32(property.GetValue(lastDoOver));
+                int ball = Convert.ToInt32(property.GetValue(response));
                 values[i] = ball;
             }
 
-            return values;
+            small.Concurso = response.Concurso;
+            small.Values = values;
+
+            return small;
+        }
+
+        LotoFacilViewModelSmal ILotoFacilQueryDoOver.GetLast()
+        {
+            int[] values = new int[25];
+            var response = _repository.GetLast();
+            var small = new LotoFacilViewModelSmal();
+
+            for (int i = 0; i < 25; i++)
+            {
+                string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
+                var property = typeof(LotoFacilOverdue).GetProperty(propertyName);
+                int ball = Convert.ToInt32(property.GetValue(response));
+                values[i] = ball;
+            }
+
+            small.Concurso = response.Concurso;
+            small.Values = values;
+
+            return small;
         }
     }
 }

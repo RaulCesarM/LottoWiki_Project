@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace LottoWiki.Service.Workers
 {
-    public class LotoFacilWorkerBase(IServiceScopeFactory scopeFactory) : BackgroundService
+    public class LotoFacilWorkerSupplyStatus(IServiceScopeFactory scopeFactory) : BackgroundService
     {
         private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
 
@@ -13,15 +13,15 @@ namespace LottoWiki.Service.Workers
             while (!stoppingToken.IsCancellationRequested)
             {
                 using var scope = _scopeFactory.CreateScope();
-                int timeDelay = InitWorkerBase(scope);
+                int timeDelay = InitWorkerStatus(scope);
                 await Task.Delay(timeDelay, stoppingToken);
             }
         }
 
-        private static int InitWorkerBase(IServiceScope scope)
+        private static int InitWorkerStatus(IServiceScope scope)
         {
             var serviceProvider = scope.ServiceProvider;
-            var supplyServices = serviceProvider.GetRequiredService<ILotoFacilSupply>();
+            var supplyServices = serviceProvider.GetRequiredService<ILotoFacilSupplyStatus>();
             return supplyServices.HasNext() ? 1000 : 10000;
         }
     }

@@ -7,12 +7,12 @@ namespace LottoWiki.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LotoFacilCompositionCsvController : ControllerBase
+    public class LotoFacilDataToTextController : ControllerBase
     {
-        private readonly ILotoFacilQueryCompositionCSV _service;
-        private readonly ILogger<LotoFacilCompositionCsvController> _logger;
+        private readonly ILotoFacilQueryDataToText _service;
+        private readonly ILogger<LotoFacilDataToTextController> _logger;
 
-        public LotoFacilCompositionCsvController(ILotoFacilQueryCompositionCSV service, ILogger<LotoFacilCompositionCsvController> logger)
+        public LotoFacilDataToTextController(ILotoFacilQueryDataToText service, ILogger<LotoFacilDataToTextController> logger)
         {
             _service = service;
             _logger = logger;

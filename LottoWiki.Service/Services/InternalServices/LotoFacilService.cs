@@ -8,10 +8,10 @@ namespace LottoWiki.Service.Services.InternalServices
 {
     public class LotoFacilService : ILotoFacilService
     {
-        private readonly ILotoFacilCommonRepository _repository;
+        private readonly ILotoFacilRepository _repository;
         private readonly IMapper _mapper;
 
-        public LotoFacilService(ILotoFacilCommonRepository repository, IMapper mapper)
+        public LotoFacilService(ILotoFacilRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

@@ -1,5 +1,6 @@
-﻿using LottoWiki.Api.Configurations;
-using LottoWiki.Service.Interfaces.External;
+﻿using LottoWiki.Service.Interfaces.External;
+using LottoWiki.Service.ViewModels.Entities;
+using LottoWiki.Api.Configurations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LottoWiki.Api.Controllers
@@ -17,18 +18,33 @@ namespace LottoWiki.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<int>), 200)]
+        [HttpGet("Ocurrences")]
+        [ProducesResponseType(typeof(LotoFacilViewModelSmal), 200)]
         [ProducesResponseType(500)]
         public IActionResult GetByPeriod()
         {
-            int[] ocurrences = _service.GetLast();
-            if (ocurrences == null)
+            LotoFacilViewModelSmal response = _service.GetLast();
+            if (response == null)
             {
                 _logger.LogMethodWarning();
                 return NotFound();
             }
-            return Ok(ocurrences);
+            return Ok(response);
+        }
+
+        [HttpGet("Ocurrences/{id}")]
+        [ProducesResponseType(typeof(LotoFacilViewModelSmal), 200)]
+        [ProducesResponseType(500)]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            _logger.LogMethodInfo();
+            LotoFacilViewModelSmal response = _service.GetById(id);
+            if (response == null)
+            {
+                _logger.LogMethodWarning();
+                return NotFound();
+            }
+            return Ok(response);
         }
     }
 }

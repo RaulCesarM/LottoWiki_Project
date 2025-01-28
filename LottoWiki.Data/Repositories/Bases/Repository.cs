@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LottoWiki.Data.Repositories.Bases
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly LotofacilContext _context;
 
-        public BaseRepository(LotofacilContext context)
+        public Repository(LotofacilContext context)
         {
             _context = context;
         }

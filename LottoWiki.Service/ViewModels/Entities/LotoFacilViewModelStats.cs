@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.ViewModels.Entities
 {
-    public class LotoFacilStatsViewModel
+    public class LotoFacilViewModelStats
     {
         public int NumeroSorteado { get; set; }
         public int Atraso { get; set; }

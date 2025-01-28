@@ -1,7 +1,8 @@
-﻿namespace LottoWiki.Service.Interfaces.Supply
+﻿using LottoWiki.Service.Interfaces.Base;
+
+namespace LottoWiki.Service.Interfaces.Supply
 {
-    public interface ILotoFacilSupplyStatus
+    public interface ILotoFacilSupplyStatus : ISupply
     {
-        bool HasNext();
     }
 }

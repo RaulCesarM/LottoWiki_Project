@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LottoWiki.Data.Repositories.Repositories
 {
-    public class LotoFacilRepositoryOverdue : BaseRepository<LotoFacilOverdue>, ILotoFacilCommonRepositoryOverdue
+    public class LotoFacilRepositoryOverdue : Repository<LotoFacilOverdue>, ILotoFacilRepositoryOverdue
     {
         private readonly LotofacilContext _context;
 

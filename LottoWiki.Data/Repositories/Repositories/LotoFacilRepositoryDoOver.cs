@@ -6,7 +6,7 @@ using LottoWiki.Data.Contexts;
 
 namespace LottoWiki.Data.Repositories.Repositories
 {
-    public class LotoFacilRepositoryDoOver : BaseRepository<LotoFacilDoOver>, ILotoFacilCommonRepositoryDoOver
+    public class LotoFacilRepositoryDoOver : Repository<LotoFacilDoOver>, ILotoFacilRepositoryDoOver
     {
         private readonly LotofacilContext _context;
 

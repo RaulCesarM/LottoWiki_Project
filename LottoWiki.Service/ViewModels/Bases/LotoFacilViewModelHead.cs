@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.ViewModels.Bases
 {
-    public class LotoFacilHeadViewModel
+    public class LotoFacilViewModelHead
     {
         public int Concurso { get; set; }
         public int ConcursoAnterior { get; set; }

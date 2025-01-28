@@ -1,8 +1,8 @@
 ﻿namespace LottoWiki.Service.ViewModels.Entities
 {
-    public class LotoFacilOverDueSmalViewModel
+    public class LotoFacilViewModelSmal
     {
         public int Concurso { get; set; }
-        public int[] AtrasosOrdenado { get; set; }
+        public int[] Values { get; set; }
     }
 }

@@ -1,0 +1,71 @@
+.dot {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.clicked .dot {
+  visibility: visible;
+}
+
+
+.container-fluid {
+  padding: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;  /* Permite quebra de linha, mas mantém dentro do container */
+  align-items: center; /* Alinha verticalmente os itens */
+  justify-content: center; /* Centraliza os botões */
+  padding: 5px; /* Dá um espaço interno */
+  background-color: #b0c4de; /* Ajuste a cor conforme necessário */
+  min-height: 60px; /* Evita que fique muito pequena */
+}
+
+.toolbar-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* Reduz o espaçamento entre os botões */
+}
+
+.toolbar-content button {
+  flex-shrink: 0; /* Evita que os botões diminuam demais */
+  min-width: 10px;
+  min-height: 10px;
+}
+
+
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button.clicked {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+button img {
+  transition: transform 0.2s;
+}
+
+button:hover img {
+  transform: scale(1.9);
+}
+
+@media (max-width: 768px) {
+  button{
+    width: 5px;
+    height: 5px;
+  }
+}

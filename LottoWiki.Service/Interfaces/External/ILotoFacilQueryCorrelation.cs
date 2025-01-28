@@ -6,6 +6,6 @@ namespace LottoWiki.Service.Interfaces.External
     {
         int[][] PopulateArrayOfArrays(int range);
 
-        LotoFacilViewModelCorrelationPlaces GetTopCorrelationsForTarget(int targetNumber);
+        LotoFacilViewModelCorrelationFriends GetTopCorrelationsForTarget(int targetNumber);
     }
 }

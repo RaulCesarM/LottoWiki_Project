@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { NavCorrelationsComponent } from './nav-modules/nav-correlations/nav-correlations.component';
 import { StatusComponent } from './charts-module/status/status.component';
+import { RankingToolbarComponent } from './components/tools/ranking-toolbar/ranking-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { StatusComponent } from './charts-module/status/status.component';
     ExplanationRankingsComponent,
     HomeComponent,
     NavCorrelationsComponent,
-    StatusComponent    
+    StatusComponent,
+    RankingToolbarComponent    
   ],
   imports: [
     CommonModule,

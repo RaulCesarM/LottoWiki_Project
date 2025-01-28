@@ -1,22 +1,22 @@
 ﻿using LottoWiki.Domain.Interfaces.IRepository;
 using LottoWiki.Service.ViewModels.Entities;
-using LottoWiki.Service.Utils;
-using System.Text;
 using LottoWiki.Service.Interfaces.External;
 using LottoWiki.Domain.Models.Entities;
+using LottoWiki.Service.Utils;
+using System.Text;
 
 namespace LottoWiki.Service.Services.ExternalServices
 {
-    public class LotoFacilQueryCompositionCSV : ILotoFacilQueryCompositionCSV
+    public class LotoFacilQueryDataToText : ILotoFacilQueryDataToText
     {
-        private readonly ILotoFacilCommonRepositoryOverdue _overdueRepository;
-        private readonly ILotoFacilCommonRepositoryDoOver _dooverRepository;
-        private readonly ILotoFacilCommonRepositoryStatus _statusRepository;
+        private readonly ILotoFacilRepositoryOverdue _overdueRepository;
+        private readonly ILotoFacilRepositoryDoOver _dooverRepository;
+        private readonly ILotoFacilRepositoryStatus _statusRepository;
 
-        public LotoFacilQueryCompositionCSV(
-            ILotoFacilCommonRepositoryOverdue overdueRepository,
-            ILotoFacilCommonRepositoryDoOver dooverRepository,
-            ILotoFacilCommonRepositoryStatus statusRepository)
+        public LotoFacilQueryDataToText(
+            ILotoFacilRepositoryOverdue overdueRepository,
+            ILotoFacilRepositoryDoOver dooverRepository,
+            ILotoFacilRepositoryStatus statusRepository)
         {
             _overdueRepository = overdueRepository;
             _dooverRepository = dooverRepository;
@@ -66,13 +66,13 @@ namespace LottoWiki.Service.Services.ExternalServices
             File.WriteAllLines(filePath, csvLines, Encoding.UTF8);
         }
 
-        private LotoFacilStatsViewModel CreateStats(
+        private static LotoFacilViewModelStats CreateStats(
             int ballNumber,
             LotoFacilOverdue overDue,
             LotoFacilDoOver doover,
             LotoFacilStatus status)
         {
-            var stats = new LotoFacilStatsViewModel();
+            var stats = new LotoFacilViewModelStats();
             string propertyName = BallNameFormatter.FormatBallName("Bola", ballNumber);
 
             stats.NumeroSorteado = ballNumber;
@@ -83,14 +83,9 @@ namespace LottoWiki.Service.Services.ExternalServices
             return stats;
         }
 
-        private T GetPropertyValue<T>(object instance, string propertyName)
+        private static T GetPropertyValue<T>(object instance, string propertyName)
         {
-            var property = instance.GetType().GetProperty(propertyName);
-            if (property == null)
-            {
-                throw new ArgumentException($"Propriedade '{propertyName}' não encontrada na classe '{instance.GetType().Name}'.");
-            }
-
+            var property = instance.GetType().GetProperty(propertyName) ?? throw new ArgumentException($"Propriedade '{propertyName}' não encontrada na classe '{instance.GetType().Name}'.");
             var value = property.GetValue(instance);
             if (value is T typedValue)
             {

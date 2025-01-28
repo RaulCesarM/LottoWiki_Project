@@ -3,7 +3,7 @@ using LottoWiki.Domain.Models.Entities;
 
 namespace LottoWiki.Domain.Interfaces.IRepository
 {
-    public interface ILotoFacilCommonRepositoryStatus : IBaseRepository<LotoFacilStatus>
+    public interface ILotoFacilRepositoryStatus : IRepository<LotoFacilStatus>
     {
         Task<List<LotoFacilStatus>> GetEntityList(int id, int range);
 

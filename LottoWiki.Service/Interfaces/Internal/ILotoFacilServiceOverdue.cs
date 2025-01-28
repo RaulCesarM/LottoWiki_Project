@@ -3,7 +3,7 @@ using LottoWiki.Service.ViewModels.Entities;
 
 namespace LottoWiki.Service.Interfaces.Internal
 {
-    public interface ILotoFacilServiceOverdue : IBaseService<LotoFacilViewModelOverdue, int>
+    public interface ILotoFacilServiceOverdue : IService<LotoFacilViewModelOverdue, int>
     {
     }
 }

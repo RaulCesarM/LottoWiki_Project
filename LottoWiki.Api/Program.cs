@@ -1,6 +1,5 @@
 using LottoWiki.Data.Contexts;
 using LottoWiki.Service.Configurations;
-using LottoWiki.Service.QueryServices;
 using LottoWiki.Service.Repositories;
 using LottoWiki.Service.Workers;
 using Microsoft.EntityFrameworkCore;
@@ -32,16 +31,14 @@ namespace LottoWiki.Api
                     logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None); // Disable EF Core SQL logging
                 });
 
-                services.AddHostedService<LotoFacilWorkerBase>();
-                services.AddHostedService<LotoFacilWorkerStatus>();
+                services.AddHostedService<LotoFacilWorkerSupplyBase>();
+                services.AddHostedService<LotoFacilWorkerSupplyStatus>();
                 services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
                 services.AddHostedService<LotoFacilWorkerSupplyDoOver>();
 
-                services.AddSingleton(AutoMapperConfigurations.Configure());
+                services.AddSingleton(LotoFacilConfigurationsAutoMapper.Configure());
 
-                RepositoryConfigurations.RegisterServices(services);
-                ServiceConfigurations.RegisterServices(services);
-                ServiceSupplyConfiguration.RegisterServices(services);
+                LotoFacilConfigurationsBootstrapper.RegisterServices(services);
             });
 
             builder.ConfigureWebHostDefaults(webBuilder =>
@@ -58,10 +55,10 @@ namespace LottoWiki.Api
 
                 try
                 {
-                    var BASE = services.GetRequiredService<LotoFacilWorkerBase>();
+                    var BASE = services.GetRequiredService<LotoFacilWorkerSupplyBase>();
                     BASE.StartAsync(default).GetAwaiter().GetResult();
 
-                    var STATUS = services.GetRequiredService<LotoFacilWorkerStatus>();
+                    var STATUS = services.GetRequiredService<LotoFacilWorkerSupplyStatus>();
                     STATUS.StartAsync(default).GetAwaiter().GetResult();
 
                     var OVERDUE = services.GetRequiredService<LotoFacilWorkerSupplyOverDue>();

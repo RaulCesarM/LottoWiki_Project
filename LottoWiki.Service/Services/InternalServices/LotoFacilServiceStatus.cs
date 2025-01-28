@@ -9,9 +9,9 @@ namespace LottoWiki.Service.Services.InternalServices
     public class LotoFacilServiceStatus : ILotoFacilServiceStatus
     {
         private readonly IMapper _mapper;
-        private readonly ILotoFacilCommonRepositoryStatus _repository;
+        private readonly ILotoFacilRepositoryStatus _repository;
 
-        public LotoFacilServiceStatus(ILotoFacilCommonRepositoryStatus repository, IMapper mapper)
+        public LotoFacilServiceStatus(ILotoFacilRepositoryStatus repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

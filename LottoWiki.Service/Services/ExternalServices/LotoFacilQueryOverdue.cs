@@ -8,51 +8,51 @@ namespace LottoWiki.Service.Services.ExternalServices
 {
     public class LotoFacilQueryOverdue : ILotoFacilQueryOverdue
     {
-        private readonly ILotoFacilCommonRepositoryOverdue _repository;
+        private readonly ILotoFacilRepositoryOverdue _repository;
 
-        public LotoFacilQueryOverdue(ILotoFacilCommonRepositoryOverdue repository)
+        public LotoFacilQueryOverdue(ILotoFacilRepositoryOverdue repository)
         {
             _repository = repository;
         }
 
-        public LotoFacilOverDueSmalViewModel GetById(int id)
+        public LotoFacilViewModelSmal GetById(int id)
         {
-            int[] OverdueValues = new int[25];
-            var overdue = _repository.GetById(id);
-            var overdueViewModel = new LotoFacilOverDueSmalViewModel();
+            int[] values = new int[25];
+            var response = _repository.GetById(id);
+            var small = new LotoFacilViewModelSmal();
 
             for (int i = 0; i < 25; i++)
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilOverdue).GetProperty(propertyName);
-                int ball = Convert.ToInt32(property.GetValue(overdue));
-                OverdueValues[i] = ball;
+                int ball = Convert.ToInt32(property.GetValue(response));
+                values[i] = ball;
             }
 
-            overdueViewModel.Concurso = overdue.Concurso;
-            overdueViewModel.AtrasosOrdenado = OverdueValues;
+            small.Concurso = response.Concurso;
+            small.Values = values;
 
-            return overdueViewModel;
+            return small;
         }
 
-        public LotoFacilOverDueSmalViewModel GetLast()
+        public LotoFacilViewModelSmal GetLast()
         {
-            int[] OverdueValues = new int[25];
-            var lastOverdue = _repository.GetLast();
-            var overdueViewModel = new LotoFacilOverDueSmalViewModel();
+            int[] values = new int[25];
+            var response = _repository.GetLast();
+            var small = new LotoFacilViewModelSmal();
 
             for (int i = 0; i < 25; i++)
             {
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilOverdue).GetProperty(propertyName);
-                int ball = Convert.ToInt32(property.GetValue(lastOverdue));
-                OverdueValues[i] = ball;
+                int ball = Convert.ToInt32(property.GetValue(response));
+                values[i] = ball;
             }
 
-            overdueViewModel.Concurso = lastOverdue.Concurso;
-            overdueViewModel.AtrasosOrdenado = OverdueValues;
+            small.Concurso = response.Concurso;
+            small.Values = values;
 
-            return overdueViewModel;
+            return small;
         }
     }
 }

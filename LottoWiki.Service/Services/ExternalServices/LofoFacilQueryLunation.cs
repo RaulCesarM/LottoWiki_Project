@@ -7,7 +7,7 @@ namespace LottoWiki.Service.Services.ExternalServices
 {
     public class LofoFacilQueryLunation : ILotoFacilQueryLunation
     {
-        private readonly ILotoFacilCommonRepository _repository;
+        private readonly ILotoFacilRepository _repository;
 
         private List<LotoFacil> LotoFacils { get; set; } = new List<LotoFacil>();
 
@@ -20,7 +20,7 @@ namespace LottoWiki.Service.Services.ExternalServices
         private List<LotoFacil> QuartoMinguante { get; set; } = [];
         private List<LotoFacil> GibosaMinguante { get; set; } = [];
 
-        public LofoFacilQueryLunation(ILotoFacilCommonRepository repository)
+        public LofoFacilQueryLunation(ILotoFacilRepository repository)
         {
             _repository = repository;
             Init();
@@ -39,7 +39,7 @@ namespace LottoWiki.Service.Services.ExternalServices
             GibosaMinguante = LotoFacils.Where(lf => lf.LuaDoSorteio == "Gibosa Minguante").ToList();
         }
 
-        private int[] CountDrawnNumbers(List<LotoFacil> lotoFacils)
+        private static int[] CountDrawnNumbers(List<LotoFacil> lotoFacils)
         {
             int[] drawnNumbersCount = new int[26];
 

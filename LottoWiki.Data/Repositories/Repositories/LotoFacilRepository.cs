@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LottoWiki.Data.Repositories.Repositories
 {
-    public class LotoFacilRepository : BaseRepository<LotoFacil>, ILotoFacilCommonRepository
+    public class LotoFacilRepository : Repository<LotoFacil>, ILotoFacilRepository
     {
         private readonly LotofacilContext _context;
 
@@ -67,6 +67,24 @@ namespace LottoWiki.Data.Repositories.Repositories
             }
 
             return entities;
+        }
+
+        public async Task<List<LotoFacil>> GetInRangeFromConcursoAsync(int concurso, int range)
+        {
+            try
+            {
+                List<LotoFacil> entities = await _context.Set<LotoFacil>()
+                    .Where(l => l.Concurso <= concurso)
+                    .OrderByDescending(l => l.Concurso)
+                    .Take(range + 1)
+                    .ToListAsync();
+                return entities;
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = $"Erro ao buscar os {range} concursos anteriores ao concurso {concurso}.";
+                throw new InvalidOperationException(errorMessage, ex);
+            }
         }
     }
 }

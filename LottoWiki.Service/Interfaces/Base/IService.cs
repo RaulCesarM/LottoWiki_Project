@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.Interfaces.Base
 {
-    public interface IBaseService<TEntity, in Tkey> where TEntity : class
+    public interface IService<TEntity, in Tkey> where TEntity : class
     {
         TEntity GetById(Tkey key);
 

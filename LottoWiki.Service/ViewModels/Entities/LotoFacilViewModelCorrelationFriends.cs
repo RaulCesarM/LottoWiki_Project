@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.ViewModels.Entities
 {
-    public class LotoFacilViewModelCorrelationPlaces
+    public class LotoFacilViewModelCorrelationFriends
     {
         public int Target { get; set; }
 

@@ -1,7 +1,6 @@
-import { Injectable } from "@angular/core";
 import { OverdueRepository } from "../data/repositories/overdueRepository";
-import { firstValueFrom } from "rxjs";
-import { OverdueSmall } from '../models/overdueSmall';
+import { LotoFacilSmall } from '../models/lotoFacilSmall';
+import { Injectable } from "@angular/core";
 
 
 
@@ -9,32 +8,38 @@ import { OverdueSmall } from '../models/overdueSmall';
   providedIn: 'root'
 })
 export class OverdueService {
-  private dataCache: OverdueSmall | null = null;
+  private dataCache: LotoFacilSmall | null = null;
  
   constructor(private repository: OverdueRepository) {}
 
   async preloadData(): Promise<void> {
     if (!this.dataCache) {
       try {
-        const data = await firstValueFrom(this.repository.getData());
+        const data = await this.repository.getData();
         this.dataCache = data;
       } catch (error) {
-        console.error('Error preloading overdue data:', error);
+        console.error('Error preloading data:', error);
       }
     }
   }
 
-  async getData(): Promise<OverdueSmall> {
+  async getData(): Promise<LotoFacilSmall> {
     try {
-      let data: OverdueSmall = await firstValueFrom(this.repository.getData());
-      this.dataCache = data;
-      if (!data.atrasosOrdenado) {
-        data = this.dataCache;
-      }
-      return data
+      const data = await this.repository.getData();
+      this.dataCache = data;   
+    
+      const resultados: number[] = data.values || [];  
+  
+      let smallModel: LotoFacilSmall = {
+        concurso: data.concurso,
+        values: resultados
+      };  
+      
+      return smallModel;
     } catch (error) {
-      console.error('Error fetching overdue data:', error);
+      console.error('Error fetching data:', error);
       throw error;
     }
   }
+
 }

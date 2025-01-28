@@ -8,11 +8,11 @@ namespace LottoWiki.Service.Services.ExternalServices
 {
     public class LotoFacilQueryCorrelation : ILotoFacilQueryCorrelation
     {
-        private readonly ILotoFacilCommonRepository _repository;
+        private readonly ILotoFacilRepository _repository;
         private List<LotoFacil> LotoFacils { get; set; } = new List<LotoFacil>();
         private int[][] Correlations { get; set; } = new int[25][];
 
-        public LotoFacilQueryCorrelation(ILotoFacilCommonRepository repository)
+        public LotoFacilQueryCorrelation(ILotoFacilRepository repository)
         {
             _repository = repository;
 
@@ -79,7 +79,7 @@ namespace LottoWiki.Service.Services.ExternalServices
             return Correlations;
         }
 
-        public LotoFacilViewModelCorrelationPlaces GetTopCorrelationsForTarget(int targetNumber)
+        public LotoFacilViewModelCorrelationFriends GetTopCorrelationsForTarget(int targetNumber)
         {
             SetPeriod(180);
             if (targetNumber < 1 || targetNumber > 25) throw new ArgumentOutOfRangeException(nameof(targetNumber), "alvo entre 1 e 25.");
@@ -94,7 +94,7 @@ namespace LottoWiki.Service.Services.ExternalServices
                 .Take(5)
                 .ToArray();
 
-            var viewModel = new LotoFacilViewModelCorrelationPlaces
+            var viewModel = new LotoFacilViewModelCorrelationFriends
             {
                 Target = targetNumber
             };

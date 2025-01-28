@@ -1,7 +1,7 @@
+import { CorrelationPlaces } from "src/app/models/correlationPlaces";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { CorrelationPlaces } from "src/app/models/correlationPlaces";
 
 @Injectable({ providedIn: 'root' })
 export class CorrelationsRepository {

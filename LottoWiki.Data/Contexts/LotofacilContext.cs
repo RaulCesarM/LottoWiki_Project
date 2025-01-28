@@ -1,6 +1,6 @@
-﻿using LottoWiki.Data.Mappings;
-using LottoWiki.Domain.Models.Entities;
+﻿using LottoWiki.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using LottoWiki.Data.Mappings;
 
 namespace LottoWiki.Data.Contexts
 {

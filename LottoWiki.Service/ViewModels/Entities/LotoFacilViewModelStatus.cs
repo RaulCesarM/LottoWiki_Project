@@ -2,7 +2,7 @@
 
 namespace LottoWiki.Service.ViewModels.Entities
 {
-    public class LotoFacilViewModelStatus : LotoFacilBallsViewModel<char>
+    public class LotoFacilViewModelStatus : LotoFacilViewModelBalls<char>
     {
         public int Concurso { get; set; }
         public int ConcursoAnterior { get; set; }

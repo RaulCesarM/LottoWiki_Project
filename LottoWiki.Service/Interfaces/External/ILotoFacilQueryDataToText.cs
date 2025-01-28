@@ -1,6 +1,6 @@
 ﻿namespace LottoWiki.Service.Interfaces.External
 {
-    public interface ILotoFacilQueryCompositionCSV
+    public interface ILotoFacilQueryDataToText
     {
         public void CreateCsv(string filePath);
     }

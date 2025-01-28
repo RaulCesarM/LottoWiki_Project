@@ -26,8 +26,8 @@ namespace LottoWiki.Api
                     });
             });
 
-            services.AddScoped<LotoFacilWorkerBase>();
-            services.AddScoped<LotoFacilWorkerStatus>();
+            services.AddScoped<LotoFacilWorkerSupplyBase>();
+            services.AddScoped<LotoFacilWorkerSupplyStatus>();
             services.AddScoped<LotoFacilWorkerSupplyOverDue>();
             services.AddScoped<LotoFacilWorkerSupplyDoOver>();
             services.AddEndpointsApiExplorer();
@@ -38,7 +38,7 @@ namespace LottoWiki.Api
             services.AddControllers();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
