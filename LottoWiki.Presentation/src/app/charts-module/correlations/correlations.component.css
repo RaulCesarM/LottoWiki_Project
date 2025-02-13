@@ -91,6 +91,17 @@ td:hover::after {
  
 }
 
+@media (max-width: 768px) {
+  table {
+    width: 500px;
+    height: 500px; 
+    overflow-y: hidden;
+    overflow-x: hidden;
+    table-layout: fixed;
+    user-select: none;
+    border: 2px solid  rgb(234, 147, 147)  
+  }
+}
 
 
 

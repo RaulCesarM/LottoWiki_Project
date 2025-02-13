@@ -31,7 +31,7 @@ export class ChartsMoonsComponent implements OnInit {
   }
 
   protected async showChart(type?: string) {
-    this.chartMoon = new Chart('canvas', {
+    this.chartMoon = new Chart('canvas-moon', {
       type: (type as keyof ChartTypeRegistry) || 'bar',
       data: {
         labels: [...this.service.labelsDataSource],

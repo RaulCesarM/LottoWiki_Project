@@ -1,39 +1,34 @@
 <mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/lunations" (click)="sidenav.close()">
+        <i class="fa-regular fa-moon"></i> Lunações
+      </a>
+      <a mat-list-item routerLink="/ranking" (click)="sidenav.close()">
+        <i class="fa-solid fa-ranking-star"></i> Ranking
+      </a>
+      <a mat-list-item routerLink="/correl" (click)="sidenav.close()">
+        <img src="assets/diagrama-de-relacao.png" width="15px"> Correlações
+      </a>
+      <a mat-list-item routerLink="/ranking" (click)="sidenav.close()">
+        <i class="fa-solid fa-download"></i> Download
+      </a>
+      <a mat-list-item routerLink="/status" (click)="sidenav.close()">
+        <img src="assets/divisao-celular.png" width="15px"> Status
+      </a>
+      <a mat-list-item routerLink="/pg-ranking" (click)="sidenav.close()">
+        <img src="assets/simbolo-matematico-da-funcao.png" width="15px"> PG Ranking
+      </a>
+      <a mat-list-item routerLink="/pg-config" (click)="sidenav.close()">
+        <img src="assets/configuracoes.png" width="15px"> Configurações
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
   <mat-sidenav-content>
-    <div>
-      <button mat-button class="larger-button" mat-button routerLink="/lunations">
-        <i class="fa-regular fa-moon fa-ml"></i>
-      </button>
-    </div>
-    <div>
-      <button mat-button class="larger-button" mat-button routerLink="/ranking">
-        <i class="fa-solid fa-ranking-star fa-ml"></i>
-      </button>
-    </div>
-    <div>
-      <button mat-button class="larger-button" mat-button routerLink="/correl">
-        <span > <img src="assets/diagrama-de-relacao.png" width="15px"></span>       
-      </button>
-    </div>
-     <div>
-      <button mat-button class="larger-button" mat-button routerLink="/ranking">
-        <i class="fa-solid fa-download fa-ml"></i>
-      </button>
-    </div>
-    <div>
-      <button mat-button class="larger-button" mat-button routerLink="/status">
-        <span > <img src="assets/divisao-celular.png" width="15px"></span>
-      </button>
-    </div>
-    <div>
-      <button mat-button class="larger-button" mat-button routerLink="/pg-ranking">
-        <span > <img src="assets/simbolo-matematico-da-funcao.png" width="15px"></span>
-      </button>
-    </div>   
-    <div>
-      <button mat-button class="larger-button" mat-button routerLink="/pg-config">
-        <span > <img src="assets/configuracoes.png" width="15px"></span>
-      </button>
-    </div>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Conteúdo da página -->
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -28,7 +28,7 @@ export class RankingService  {
       new DataSets(
         'Média',
         [],
-        '',
+       'rgba(255, 0, 0, 1)',
         'rgba(255, 0, 0, 1)',
         1,
         false,
@@ -38,7 +38,7 @@ export class RankingService  {
       new DataSets(
         'Linha de Tendência Exponencial',
         [],
-        '',
+        'rgba(0, 120, 255, 1)',
         'rgba(0, 120, 255, 1)',
         1,
         false,
@@ -48,23 +48,23 @@ export class RankingService  {
       new DataSets(
         'Linha de Tendência Aritmetica',
         [],
-        '',
+        'rgba(0, 0, 0, 1)',
         'rgba(0, 0, 0, 1)',
         2,
         false,
         'line',
         1
       ),
-      new DataSets(
-        'Linha de Tendência Logaritmica',
-        [],
-        '',
-        'rgba(0, 0, 0, 1)',
-        1,
-        false,
-        'line',
-        1
-      ),
+      // new DataSets(
+      //   'Linha de Tendência Logaritmica',
+      //   [],
+      //  'rgb(72, 202, 32)',
+      //   'rgb(72, 202, 32)',
+      //   1,
+      //   false,
+      //   'line',
+      //   1
+      // ),
     ];
  
   }

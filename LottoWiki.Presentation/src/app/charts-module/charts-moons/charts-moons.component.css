@@ -1,23 +1,10 @@
-
+/* 
 #canvas {
   width: 100%;
   height:100%;
 }
 
-.dot {
-  position: absolute;
-  top: 2px;
-  right: 1px;
-  width: 8px;
-  height: 8px;
-  background-color: red;
-  border-radius: 50%;
-  visibility: hidden;
-}
 
-.clicked .dot {
-  visibility: visible;
-}
 
 .container-fluid {
   max-height: 90vh;
@@ -63,4 +50,64 @@
   display: flex;
   align-items: center;
   border: 1px solid #ebe0e0;
+} */
+
+.container-fluid {
+  max-height: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.chart-container {
+  width: 700px;
+  height:500px;
+  border: 1px solid #ebe0e0;
+}
+
+#canvas {
+  width: 100%;
+  height:100%;
+}
+
+.conc {
+  width: auto;  
+  padding: 40px; 
+ 
+  color: #00B2FF; 
+  font-size: 16px; 
+  font-weight: bold; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  border-radius: 5px; 
+}
+
+@media (max-width: 768px) {
+  .canvas {
+    width: 390px;
+    height:390px;
+  }
+  .chart-container{
+    width: 390px;
+    height:390px;
+    border: 1px solid #ebe0e0;
+  }
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toolbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
 }

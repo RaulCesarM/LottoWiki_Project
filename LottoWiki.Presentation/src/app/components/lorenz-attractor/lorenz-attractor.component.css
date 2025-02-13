@@ -1,0 +1,84 @@
+.dot {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.clicked .dot {
+  visibility: visible;
+}
+
+button{
+  position: relative;
+  width: 65px;
+  height: 65px;
+  border: none;
+  background: none !important;
+}
+
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  background: white;
+  padding: 10px 0;
+}
+
+/* lorenzCanvas {
+  display: block;
+  background-color: white;
+  margin: 0 auto;
+  width: 850px;
+  height: 600px;
+  bottom: 150px;
+} */
+
+@media (max-width: 768px) {
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  
+  .fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    
+    width: 100%;
+    text-align: center;
+    background: white;
+    padding: 50px 0;
+  }
+  
+  canvas {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    padding-top: 150px;
+    top:50px;
+    height: auto;
+   
+  }
+  
+
+  .item {
+    width: 80%;
+  }
+}

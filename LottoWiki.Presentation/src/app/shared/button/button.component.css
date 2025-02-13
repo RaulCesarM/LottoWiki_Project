@@ -1,0 +1,31 @@
+.dot {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.clicked .dot {
+  visibility: visible;
+}
+
+
+button {
+  border: none !important;
+  outline: none !important;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: none !important;
+  padding: 0;
+  box-shadow: none !important;
+}
+.mat-button {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}

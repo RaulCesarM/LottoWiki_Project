@@ -1,27 +1,22 @@
-<div class="container-fluid">
-  <app-ranking-toolbar [isSorted]="isSorted" 
-  [isOcurrenceActive]="isOcurrenceActive" 
-  [isOverdueActive]="isOverdueActive"
-  [isDoOverActive]="isDoOverActive" 
-  [isAvaregeShow]="isAvaregeShow"
-  [isExponentialTrendLineShow]="isExponentialTrendLineShow" 
-  [isArithmeticTrendLineShow]="isArithmeticTrendLineShow"
-  [isLogarithmLineDataTrendLineShow]="isLogarithmLineDataTrendLineShow" 
-  [isFormulaShow]="isFormulaShow"
-  (toggleSorted)="toggleSorted()" 
-  (toggleAvarege)="toggleAvarege()"
-  (toggleExponentialTrendLine)="toggleExponentialTrendLine()"
-  (toggleArithmeticTrendLine)="toggleArithmeticTrendLine()" 
-  (toggleLogarithmTrendLine)="toggleLogarithmTrendLine()"
-  (toggleShowFormula)="toggleShowFormula()" 
-  (updateDataSourceBasedOnEvent)="updateDataSourceBasedOnEvent($event)">
-</app-ranking-toolbar>
+<div class="container-fluid d-flex flex-column align-items-center">
   <div class="conc text-center">
     <p id="media" class="fw-bold">Concurso: {{ concurso }}</p>
   </div>
 
-  <div class="chart-container d-flex justify-content-center my-3">
-    <canvas id="canvas" class="chart" width="750" height="250"></canvas>
+  <div class="toolbar-container d-flex justify-content-center">
+    <app-ranking-toolbar 
+    [isSorted]="isSorted"
+    [isOcurrenceActive]="isOcurrenceActive"
+    [isOverdueActive]="isOverdueActive"
+    [isDoOverActive]="isDoOverActive"
+    (toggleSorted)="toggleSorted()"
+    (updateDataSourceBasedOnEvent)="updateDataSourceBasedOnEvent($event)">
+    </app-ranking-toolbar>
   </div>
 
+  <div class="chart-container d-flex justify-content-center mt-3">
+    <canvas id="canvas" class="chart" width="30px" height="30px"></canvas>
+  </div>
+
+  <app-legend-explanation></app-legend-explanation>
 </div>

@@ -1,78 +1,75 @@
 <div class="container-fluid" style="max-height: 90vh;">
-  <div class="row ">
+  <div class="row">
     <fieldset>
-      <button mat-button (click)="toggleSorted()" [class.clicked]="isSorted" matTooltip="Ordenar ">
-        <span>
-          <img src="assets/ordenar.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSource(phase.NewMoon)" [class.clicked]="activeFlag.isNewMoonActive" matTooltip="Lua Nova">
-        <span>
-          <img src="assets/lua-nova.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSource(phase.CrescentMoon)" [class.clicked]="activeFlag.isCrescentMoonActive" matTooltip="Crescente">
-        <span>
-          <img src="assets/lua-crescente.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSource(phase.QuarterCrescentMoon)"  [class.clicked]="activeFlag.isQuarterCrescentMoonActive" matTooltip="Quarto Crescente">
-        <span>
-          <img src="assets/lua-quarto-crescente.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSource(phase.GibbousCrescentMoon)"  [class.clicked]="activeFlag.isGibbousCrescentMoonActive" matTooltip="Gibosa crescente">
-        <span>
-          <img src="assets/lua-gibosa-crescente.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSource(phase.FullMoon)" [class.clicked]="activeFlag.isFullMoonActive"  matTooltip="Lua Cheia">
-        <span>
-          <img src="assets/lua-cheia.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
+      <app-button 
+        [isActive]="isSorted"
+        icon="assets/ordenar.png"
+        tooltip="Ordenar"
+        (clicked)="toggleSorted()">
+      </app-button>
 
-      <button mat-button (click)="updateDataSource(phase.GibbousWaningMoon)" [class.clicked]="activeFlag.isGibbousWaningMoonActive" matTooltip="Gibosa minguante">
-        <span>
-          <img src="assets/lua-gibosa-minguante.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="updateDataSource(phase.QuarterWaningMoon)" [class.clicked]="activeFlag.isQuarterWaningActive" matTooltip="Quarto minguante">
-        <span>
-          <img src="assets/lua-quarto-minguante.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
+      <app-button 
+        [isActive]="activeFlag.isNewMoonActive"
+        icon="assets/lua-nova.png"
+        tooltip="Lua Nova"
+        (clicked)="updateDataSource(phase.NewMoon)">
+      </app-button>
 
-      <button mat-button (click)="updateDataSource(phase.WaningMoon)" [class.clicked]="activeFlag.isWanningMoonActive"   matTooltip="Minguante">
-        <span>
-          <img src="assets/lua-minguante.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
-      <button mat-button (click)="toggleAvarege()" [class.clicked]="isAvaregeShow" matTooltip="Mostrar media">
-        <span>
-          <img src="assets/arithmetic-mean.png" width="25px">
-          <span class="dot">
-          </span>
-        </span>
-      </button>
+      <app-button 
+        [isActive]="activeFlag.isCrescentMoonActive"
+        icon="assets/lua-crescente.png"
+        tooltip="Crescente"
+        (clicked)="updateDataSource(phase.CrescentMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="activeFlag.isQuarterCrescentMoonActive"
+        icon="assets/lua-quarto-crescente.png"
+        tooltip="Quarto Crescente"
+        (clicked)="updateDataSource(phase.QuarterCrescentMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="activeFlag.isGibbousCrescentMoonActive"
+        icon="assets/lua-gibosa-crescente.png"
+        tooltip="Gibosa crescente"
+        (clicked)="updateDataSource(phase.GibbousCrescentMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="activeFlag.isFullMoonActive"
+        icon="assets/lua-cheia.png"
+        tooltip="Lua Cheia"
+        (clicked)="updateDataSource(phase.FullMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="activeFlag.isGibbousWaningMoonActive"
+        icon="assets/lua-gibosa-minguante.png"
+        tooltip="Gibosa Minguante"
+        (clicked)="updateDataSource(phase.GibbousWaningMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="activeFlag.isQuarterWaningActive"
+        icon="assets/lua-quarto-minguante.png"
+        tooltip="Quarto Minguante"
+        (clicked)="updateDataSource(phase.QuarterWaningMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="activeFlag.isWanningMoonActive"
+        icon="assets/lua-minguante.png"
+        tooltip="Minguante"
+        (clicked)="updateDataSource(phase.WaningMoon)">
+      </app-button>
+
+      <app-button 
+        [isActive]="isAvaregeShow"
+        icon="assets/arithmetic-mean.png"
+        tooltip="Mostrar média"
+        (clicked)="toggleAvarege()">
+      </app-button>
 
       <mat-select [(ngModel)]="typeChart" (ngModelChange)="saveType($event)">
         <mat-option value="line">Line</mat-option>
@@ -82,12 +79,13 @@
     </fieldset>
   </div>
 
-  <div class="row ">
+  <div class="row">
     <div class="col">
       <fieldset class="center-fieldset">
         <p class="chart-container">
-          <canvas id="canvas" width="350px" height="300px">{{chartMoon}}</canvas>
-        </p>    
+          <canvas id="canvas-moon" width="350px" height="300px">{{chartMoon}}</canvas>
+        </p>
       </fieldset>
     </div>
   </div>
+</div>

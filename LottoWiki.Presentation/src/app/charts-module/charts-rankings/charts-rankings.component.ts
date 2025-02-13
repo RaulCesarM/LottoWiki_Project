@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart, ChartTypeRegistry } from 'chart.js/auto';
-import { KatexService } from 'src/app/services/katex.service';
-import { MathService } from 'src/app/services/math.service';
 import { OcurrencesService } from 'src/app/services/ocurrences.service';
+import { Chart, ChartTypeRegistry, LegendItem } from 'chart.js/auto';
 import { OverdueService } from 'src/app/services/overdue.service';
-import { DoOverService } from 'src/app/services/doover.service';
 import { RankingService } from 'src/app/services/ranking.service';
+import { DoOverService } from 'src/app/services/doover.service';
 import { LotoFacilSmall } from 'src/app/models/lotoFacilSmall';
+import { MathService } from 'src/app/services/math.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-charts-rankings',
@@ -33,7 +32,6 @@ export class ChartsRankingsComponent implements OnInit {
   concurso: number = 0;
 
   constructor(
-    private katexService: KatexService,
     private mathService: MathService,
     private rankingService: RankingService,
     private overdueService: OverdueService,
@@ -41,56 +39,75 @@ export class ChartsRankingsComponent implements OnInit {
     private ocurrencesService: OcurrencesService
   ) {}
 
-  protected avaregeExpression: string = '';
-  protected exponetialTrendLineExpression: string = '';
-  protected arithmeticTrendLineExpression: string = '';
-  protected logaritmicTrendLineExpression: string = '';
-  protected outlierInputValue: number = 5
-
   async ngOnInit(): Promise<void> {
     this.isOcurrenceActive = true
-    const smallModel: LotoFacilSmall = await this.ocurrencesService.getData(); 
-    this.originalDataSource = [... smallModel.values]
+    const smallModel: LotoFacilSmall = await this.ocurrencesService.getData();
+    this.originalDataSource = [...smallModel.values]
     this.originalLabels = Array.from({ length: 25 }, (_, i) => (i + 1).toString());
     this.showChart();
     this.initChart();
   }
+
 
   private showChart(type?: string): void {
     this.chartRanking = new Chart('canvas', {
       type: (type as keyof ChartTypeRegistry) || 'bar',
       data: {
         labels: [...this.rankingService.labelsDataSource],
-        datasets: [... this.rankingService.getDataSets()]
+        datasets: this.rankingService.getDataSets().map((dataset, index) => ({
+          ...dataset,
+          hidden: index !== 0
+        }))
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
           x: {
-            offset: true,
-            grid: {
-              display: true,
-            },
+            ticks: {
+              font: { size: 8 },
+              maxRotation: 0,
+              minRotation: 0,
+              autoSkip: true,
+              autoSkipPadding: 0,
+            }
           },
           y: {
+            ticks: {
+              font: { size: 7 },
+              maxRotation: 0,
+              minRotation: 0,
+              autoSkip: true,
+              autoSkipPadding: 0
+            },
             beginAtZero: true,
             offset: true,
-            grid: {
-              display: true,
-            },
+            grid: { display: true },
           },
         },
         plugins: {
-          title: {
-            display: true,
-            },
+          title: { display: true },
           legend: {
-            display: false,
-          },
-        },
-        
-      },
+            display: true,
+            labels: {
+              font: { size: 14 },
+              boxWidth: 20,
+              padding: 10,
+              generateLabels: (chart): LegendItem[] => {
+                return chart.data.datasets.map((dataset, index) => ({
+                  datasetIndex: index,
+                  text: '',
+                  fillStyle: dataset.backgroundColor as string,
+                  strokeStyle: dataset.borderColor as string,
+                  lineWidth: 2,
+                  hidden: dataset.hidden,
+                  pointStyle: 'rect'
+                }));
+              }
+            }
+          }
+        }
+      }
     });
 
     this.originalData = JSON.parse(JSON.stringify(this.chartRanking.data.datasets[0].data));
@@ -103,34 +120,34 @@ export class ChartsRankingsComponent implements OnInit {
     this.isDoOverActive = false;
   }
 
-  protected async updateDataSourceBasedOnEvent(event: string): Promise<void> {   
-    if (event === 'ocurrences' && !this.isOcurrenceActive) {     
+  protected async updateDataSourceBasedOnEvent(event: string): Promise<void> {
+    if (event === 'ocurrences' && !this.isOcurrenceActive) {
       this.setFlagsFalse();
       this.isOcurrenceActive = true;
-      let smallModel = await this.ocurrencesService.getData() ;
-     this.chartRanking.data.datasets[0].data =  [... smallModel.values];
+      let smallModel = await this.ocurrencesService.getData();
+      this.chartRanking.data.datasets[0].data = [...smallModel.values];
       this.concurso = smallModel.concurso
       this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
     }
-    if (event === 'overdue' && !this.isOverdueActive) {      
+    if (event === 'overdue' && !this.isOverdueActive) {
       this.setFlagsFalse();
       this.isOverdueActive = true;
       let smallModel = await this.overdueService.getData();
-      this.chartRanking.data.datasets[0].data = [... smallModel.values];
+      this.chartRanking.data.datasets[0].data = [...smallModel.values];
       this.concurso = smallModel.concurso
       this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
     }
-    if (event === 'doover' && !this.isDoOverActive) {     
+    if (event === 'doover' && !this.isDoOverActive) {
       this.setFlagsFalse();
       this.isDoOverActive = true;
       let smallModel = await this.dooverService.getData();
-      this.chartRanking.data.datasets[0].data = [... smallModel.values];
+      this.chartRanking.data.datasets[0].data = [...smallModel.values];
       this.concurso = smallModel.concurso
-       this.checkSorted();
+      this.checkSorted();
       this.updateChartAndTrendLines();
       this.chartRanking.update();
     }
@@ -143,41 +160,16 @@ export class ChartsRankingsComponent implements OnInit {
     this.chartRanking.update();
   }
 
-
   private updateChartAndTrendLines(): void {
-    if (this.isExponentialTrendLineShow) {
-      this.addExponentialArithmeticTrendLine();
-    } else {
-      this.removeExponentialArithmeticTrendLine();
-    }
-
-    if (this.isArithmeticTrendLineShow) {
-      this.addArithmeticTrendLine();
-    } else {
-      this.removerArithmeticTrendLine();
-    }
-
-    if (this.isLogarithmLineDataTrendLineShow) {
-      this.addLogarithmTrendLine();
-    } else {
-      this.removeLogarithmTrendLine();
-    }
-
-    if (this.isAvaregeShow) {
-      this.addAvarege();
-    } else {
-      this.removeAvarege();
-    }
-  }
-
-  protected toggleShowFormula(): void {
-   this.isFormulaShow = !this.isFormulaShow;
-    this.isFormulaShow = false
+    this.addExponentialArithmeticTrendLine();
+    this.addArithmeticTrendLine();
+    this.addAvarege();
   }
 
   protected toggleSorted(): void {
     this.isSorted = !this.isSorted;
     this.checkSorted();
+    this.updateChartAndTrendLines();
   }
 
   private checkSorted(): void {
@@ -202,10 +194,6 @@ export class ChartsRankingsComponent implements OnInit {
     this.chartRanking.update();
   }
 
-  protected toggleArithmeticTrendLine(): void {
-    this.isArithmeticTrendLineShow = !this.isArithmeticTrendLineShow;
-    this.updateChartAndTrendLines();  
-  }
 
   private async addArithmeticTrendLine(): Promise<void> {
     const data: number[] = this.chartRanking.data.datasets[0].data;
@@ -213,17 +201,6 @@ export class ChartsRankingsComponent implements OnInit {
     const trendLineData: number[] = await this.mathService.calculateArithmeticTrendLine(data);
     this.chartRanking.data.datasets[3].data = trendLineData;
     this.chartRanking.update();
-  }
-
-  private removerArithmeticTrendLine(): void {
-    this.isArithmeticTrendLineShow = false;
-    this.chartRanking.data.datasets[3].data = [];
-    this.chartRanking.update();
-  }
-
-  protected toggleExponentialTrendLine(): void {
-    this.isExponentialTrendLineShow = !this.isExponentialTrendLineShow;
-    this.updateChartAndTrendLines();  
   }
 
   private async addExponentialArithmeticTrendLine(): Promise<void> {
@@ -234,36 +211,6 @@ export class ChartsRankingsComponent implements OnInit {
     this.chartRanking.update();
   }
 
-  private removeExponentialArithmeticTrendLine(): void {
-    this.isExponentialTrendLineShow = false;
-    this.chartRanking.data.datasets[2].data = [];
-    this.chartRanking.update();
-  }
-
-  protected toggleLogarithmTrendLine(): void {
-    this.isLogarithmLineDataTrendLineShow = !this.isLogarithmLineDataTrendLineShow;
-    this.updateChartAndTrendLines();   
-  }
-
-  private async addLogarithmTrendLine(): Promise<void> {
-    const data: number[] = this.chartRanking.data.datasets[0].data;
-    this.isLogarithmLineDataTrendLineShow = true;
-    const trendLogarithmLineData: number[] = await this.mathService.calculateLogarithmicTrendLine(data);
-    this.chartRanking.data.datasets[4].data = trendLogarithmLineData;
-    this.chartRanking.update();
-  }
-
-  private removeLogarithmTrendLine(): void {
-    this.isLogarithmLineDataTrendLineShow = false;
-    this.chartRanking.data.datasets[4].data = [];
-    this.chartRanking.update();
-  }
-
-  protected toggleAvarege(): void {
-    this.isAvaregeShow = !this.isAvaregeShow;   
-    this.updateChartAndTrendLines();
-  }
-
   private async addAvarege(): Promise<void> {
     const data: number[] = this.chartRanking.data.datasets[0].data;
     const media: number = await this.mathService.calculateAverage(data);
@@ -271,8 +218,4 @@ export class ChartsRankingsComponent implements OnInit {
     this.chartRanking.update();
   }
 
-  private removeAvarege(): void {
-    this.chartRanking.data.datasets[1].data = [];
-    this.chartRanking.update();
-  }
 }

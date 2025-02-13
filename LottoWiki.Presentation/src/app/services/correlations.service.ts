@@ -16,7 +16,7 @@ export class CorrelationsService {
   async preloadData(): Promise<void> {
     if (!this.dataCache) {
       try {
-        const data = await firstValueFrom(this.repository.getData());
+        const data: number[][] = await firstValueFrom(this.repository.getData());
         this.dataCache = data;
       } catch (error) {
         console.error('Error preloading overdue data:', error);

@@ -1,7 +1,7 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-* {
+/* * {
   margin: 0px;
   padding: 0px;
 }
@@ -22,8 +22,8 @@ body {
   font-size: 2px;
   overflow: hidden;
 }
-
-
+ */
+/* 
 .spadding {
   padding: 15px;
 }
@@ -49,5 +49,5 @@ span.katex-html {
 
  
 }
-
+ */
 

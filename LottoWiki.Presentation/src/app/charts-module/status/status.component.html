@@ -1,51 +1,43 @@
-
-
-
-
-  <div class="container-fluid">
-    <div class="row">
-      <app-nav-correlations></app-nav-correlations>
-    </div>
-    <div class="center-Table">
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30px;"></th>
-            <th class="thead" *ngFor="let header of headers; let colIndex = index"
-              [ngClass]="{'hovered-index': hoveredColumnIndex === colIndex}" (mouseover)="onCellMouseOvercol(colIndex)"
-              (mouseout)="onCellMouseOutcol()">
-              {{ header }}
-            </th>
-            <th class="summary-column">R</th>
-            <th class="summary-column">N</th>
-            <th class="summary-column">A</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let concurso of concursos; let rowIndex = index">
-            <th style="width: 180px;">{{ concurso }}</th>
-            <td *ngFor="let cellValue of cells[rowIndex]; let colIndex = index"
-              [ngStyle]="{'background-color': getCellColor(cellValue)}"
-              (mouseover)="onCellMouseOver(rowIndex, colIndex)" (mouseout)="onCellMouseOut()">
-              {{ cellValue }}
-            </td>
-            <td class="summary-column">{{ getCountsForRow(cells[rowIndex]).R || 0 }}</td>
-            <td class="summary-column">{{ getCountsForRow(cells[rowIndex]).N || 0 }}</td>
-            <td class="summary-column">{{ getCountsForRow(cells[rowIndex]).A || 0 }}</td>
-          </tr>
-        </tbody>
-        <tfoot class="summary-column">
-          <tr>
-            <td [attr.colspan]="headers.length + 1" style="text-align: right; font-weight: bold;">Média:</td>
-            <td class="summary-column">{{ calculateAverages().averageR }}</td>
-            <td class="summary-column">{{ calculateAverages().averageN }}</td>
-            <td class="summary-column">{{ calculateAverages().averageA }}</td>
-          </tr>
-        </tfoot>
-
-      </table>
-    </div>
-
-
+<div class="container-fluid">
+  <div class="row">
+    <app-nav-correlations></app-nav-correlations>
   </div>
-
+  <div class="center-Table">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30px;"></th>
+          <th class="thead" *ngFor="let header of headers; let colIndex = index"
+            [ngClass]="{'hovered-index': hoveredColumnIndex === colIndex}" (mouseover)="onCellMouseOvercol(colIndex)"
+            (mouseout)="onCellMouseOutcol()">
+            {{ header }}
+          </th>
+          <th class="summary-column">R</th>
+          <th class="summary-column">N</th>
+          <th class="summary-column">A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let concurso of concursos; let rowIndex = index">
+          <th style="width: 180px;">{{ concurso }}</th>
+          <td *ngFor="let cellValue of cells[rowIndex]; let colIndex = index"
+            [ngStyle]="{'background-color': getCellColor(cellValue)}" (mouseover)="onCellMouseOver(rowIndex, colIndex)"
+            (mouseout)="onCellMouseOut()">
+            {{ cellValue }}
+          </td>
+          <td class="summary-column">{{ getCountsForRow(cells[rowIndex]).R || 0 }}</td>
+          <td class="summary-column">{{ getCountsForRow(cells[rowIndex]).N || 0 }}</td>
+          <td class="summary-column">{{ getCountsForRow(cells[rowIndex]).A || 0 }}</td>
+        </tr>
+      </tbody>
+      <tfoot class="summary-column">
+        <tr>
+          <td [attr.colspan]="headers.length + 1" style="text-align: right; font-weight: bold;">Média:</td>
+          <td class="summary-column">{{ calculateAverages().averageR }}</td>
+          <td class="summary-column">{{ calculateAverages().averageN }}</td>
+          <td class="summary-column">{{ calculateAverages().averageA }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

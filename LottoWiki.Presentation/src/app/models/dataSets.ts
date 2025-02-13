@@ -15,7 +15,7 @@ export class DataSets {
     data: number[] = [],
     backgroundColor: string = '',
     borderColor: string = '',
-    borderWidth: number = 1,
+    borderWidth: number = 0,
     fill: boolean = false,
     type: ChartType = 'bar',
     pointRadius: number = 1

@@ -28,6 +28,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavCorrelationsComponent } from './nav-modules/nav-correlations/nav-correlations.component';
 import { StatusComponent } from './charts-module/status/status.component';
 import { RankingToolbarComponent } from './components/tools/ranking-toolbar/ranking-toolbar.component';
+import { LorenzAttractorComponent } from './components/lorenz-attractor/lorenz-attractor.component';
+import { ButtonComponent } from './shared/button/button.component';
+import { LegendExplanationComponent } from './components/tools/legend-explanation/legend-explanation.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { RankingToolbarComponent } from './components/tools/ranking-toolbar/rank
     HomeComponent,
     NavCorrelationsComponent,
     StatusComponent,
-    RankingToolbarComponent    
+    RankingToolbarComponent,
+    LorenzAttractorComponent,
+    ButtonComponent,
+    LegendExplanationComponent,
+   
   ],
   imports: [
     CommonModule,

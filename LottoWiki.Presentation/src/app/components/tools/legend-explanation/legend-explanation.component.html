@@ -1,0 +1,11 @@
+
+<fieldset>
+  <div>
+    <div *ngFor="let legend of legends" class="legend-item">
+      <span class="legend-color" [style.backgroundColor]="legend.color"></span>
+      <span class="legend-label">{{ legend.label }}</span>
+    </div>
+  </div>
+</fieldset>
+
+
