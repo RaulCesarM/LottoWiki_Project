@@ -7,5 +7,7 @@ namespace LottoWiki.Service.Interfaces.External
         LotoFacilViewModelSmal GetLast();
 
         LotoFacilViewModelSmal GetById(int id);
+
+        LotoFacilViewModelSmal GetById(int id, int interval);
     }
 }

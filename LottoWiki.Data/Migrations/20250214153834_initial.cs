@@ -7,7 +7,7 @@
 namespace LottoWiki.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Name : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,8 @@ namespace LottoWiki.Data.Migrations
                     Casa_15 = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     DataApuracao = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
                     NomeMunicipioUFSorteio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    LuaDoSorteio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
+                    LuaDoSorteio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    Macro_Estado = table.Column<int>(type: "int", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,6 +51,7 @@ namespace LottoWiki.Data.Migrations
                     Concurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ConcursoAnterior = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ProximoConcurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    Macro_Estado = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     Bola_01 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_02 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_03 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
@@ -88,6 +90,7 @@ namespace LottoWiki.Data.Migrations
                     Concurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ConcursoAnterior = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ProximoConcurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    Macro_Estado = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     Bola_01 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_02 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_03 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
@@ -159,32 +162,32 @@ namespace LottoWiki.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "base.lotoFacil",
-                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Casa_01", "Casa_02", "Casa_03", "Casa_04", "Casa_05", "Casa_06", "Casa_07", "Casa_08", "Casa_09", "Casa_10", "Casa_11", "Casa_12", "Casa_13", "Casa_14", "Casa_15", "DataApuracao", "LuaDoSorteio", "NomeMunicipioUFSorteio" },
+                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Casa_01", "Casa_02", "Casa_03", "Casa_04", "Casa_05", "Casa_06", "Casa_07", "Casa_08", "Casa_09", "Casa_10", "Casa_11", "Casa_12", "Casa_13", "Casa_14", "Casa_15", "DataApuracao", "LuaDoSorteio", "Macro_Estado", "NomeMunicipioUFSorteio" },
                 values: new object[,]
                 {
-                    { 1, 0, 2, 18, 20, 25, 23, 10, 11, 24, 14, 6, 2, 13, 9, 5, 16, 3, "01/02/1989", "Crescente", "CRUZ ALTA, RS" },
-                    { 2, 1, 3, 23, 15, 5, 4, 12, 16, 20, 6, 11, 19, 24, 1, 9, 13, 7, "02/02/1989", "Crescente", "CRUZ ALTA, RS" },
-                    { 3, 2, 4, 20, 23, 12, 8, 6, 1, 7, 11, 14, 4, 16, 10, 9, 17, 24, "02/02/1989", "Crescente", "CRUZ ALTA, RS" }
+                    { 1, 0, 2, 18, 20, 25, 23, 10, 11, 24, 14, 6, 2, 13, 9, 5, 16, 3, "01/02/1989", "Crescente", 100, "CRUZ ALTA, RS" },
+                    { 2, 1, 3, 23, 15, 5, 4, 12, 16, 20, 6, 11, 19, 24, 1, 9, 13, 7, "02/02/1989", "Crescente", 100, "CRUZ ALTA, RS" },
+                    { 3, 2, 4, 20, 23, 12, 8, 6, 1, 7, 11, 14, 4, 16, 10, 9, 17, 24, "02/02/1989", "Crescente", 100, "CRUZ ALTA, RS" }
                 });
 
             migrationBuilder.InsertData(
                 table: "bola.atraso",
-                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25" },
+                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25", "Macro_Estado" },
                 values: new object[,]
                 {
-                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0 },
-                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1 },
-                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2 }
+                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 10 },
+                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 10 },
+                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2, 10 }
                 });
 
             migrationBuilder.InsertData(
                 table: "bola.repetida",
-                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25" },
+                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25", "Macro_Estado" },
                 values: new object[,]
                 {
-                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0 },
-                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1 },
-                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2 }
+                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 10 },
+                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 10 },
+                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2, 10 }
                 });
 
             migrationBuilder.InsertData(

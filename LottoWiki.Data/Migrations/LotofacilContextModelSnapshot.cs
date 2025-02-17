@@ -103,6 +103,10 @@ namespace LottoWiki.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar");
 
+                    b.Property<int>("Macro_Estado")
+                        .HasMaxLength(10)
+                        .HasColumnType("int");
+
                     b.Property<string>("NomeMunicipioUFSorteio")
                         .HasMaxLength(50)
                         .HasColumnType("varchar");
@@ -134,6 +138,7 @@ namespace LottoWiki.Data.Migrations
                             Casa_15 = 3,
                             DataApuracao = "01/02/1989",
                             LuaDoSorteio = "Crescente",
+                            Macro_Estado = 100,
                             NomeMunicipioUFSorteio = "CRUZ ALTA, RS"
                         },
                         new
@@ -158,6 +163,7 @@ namespace LottoWiki.Data.Migrations
                             Casa_15 = 7,
                             DataApuracao = "02/02/1989",
                             LuaDoSorteio = "Crescente",
+                            Macro_Estado = 100,
                             NomeMunicipioUFSorteio = "CRUZ ALTA, RS"
                         },
                         new
@@ -182,6 +188,7 @@ namespace LottoWiki.Data.Migrations
                             Casa_15 = 24,
                             DataApuracao = "02/02/1989",
                             LuaDoSorteio = "Crescente",
+                            Macro_Estado = 100,
                             NomeMunicipioUFSorteio = "CRUZ ALTA, RS"
                         });
                 });
@@ -300,6 +307,10 @@ namespace LottoWiki.Data.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("int");
 
+                    b.Property<int>("Macro_Estado")
+                        .HasMaxLength(10)
+                        .HasColumnType("int");
+
                     b.HasKey("Concurso", "ConcursoAnterior", "ProximoConcurso");
 
                     b.ToTable("bola.repetida", (string)null);
@@ -334,7 +345,8 @@ namespace LottoWiki.Data.Migrations
                             Bola_22 = 1,
                             Bola_23 = 0,
                             Bola_24 = 0,
-                            Bola_25 = 0
+                            Bola_25 = 0,
+                            Macro_Estado = 10
                         },
                         new
                         {
@@ -365,7 +377,8 @@ namespace LottoWiki.Data.Migrations
                             Bola_22 = 2,
                             Bola_23 = 0,
                             Bola_24 = 0,
-                            Bola_25 = 1
+                            Bola_25 = 1,
+                            Macro_Estado = 10
                         },
                         new
                         {
@@ -396,7 +409,8 @@ namespace LottoWiki.Data.Migrations
                             Bola_22 = 3,
                             Bola_23 = 0,
                             Bola_24 = 0,
-                            Bola_25 = 2
+                            Bola_25 = 2,
+                            Macro_Estado = 10
                         });
                 });
 
@@ -514,6 +528,10 @@ namespace LottoWiki.Data.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("int");
 
+                    b.Property<int>("Macro_Estado")
+                        .HasMaxLength(10)
+                        .HasColumnType("int");
+
                     b.HasKey("Concurso", "ConcursoAnterior", "ProximoConcurso");
 
                     b.ToTable("bola.atraso", (string)null);
@@ -548,7 +566,8 @@ namespace LottoWiki.Data.Migrations
                             Bola_22 = 1,
                             Bola_23 = 0,
                             Bola_24 = 0,
-                            Bola_25 = 0
+                            Bola_25 = 0,
+                            Macro_Estado = 10
                         },
                         new
                         {
@@ -579,7 +598,8 @@ namespace LottoWiki.Data.Migrations
                             Bola_22 = 2,
                             Bola_23 = 0,
                             Bola_24 = 0,
-                            Bola_25 = 1
+                            Bola_25 = 1,
+                            Macro_Estado = 10
                         },
                         new
                         {
@@ -610,7 +630,8 @@ namespace LottoWiki.Data.Migrations
                             Bola_22 = 3,
                             Bola_23 = 0,
                             Bola_24 = 0,
-                            Bola_25 = 2
+                            Bola_25 = 2,
+                            Macro_Estado = 10
                         });
                 });
 

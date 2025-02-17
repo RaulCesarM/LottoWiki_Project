@@ -74,8 +74,10 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
         private void Populate()
         {
             _logger.LogMethodInfo();
+            NewOverDue.Macro_Estado = 0;
             for (int i = 0; i < CalculatedBalls.Count; i++)
             {
+                NewOverDue.Macro_Estado += CalculatedBalls[i];
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
                 property.SetValue(NewOverDue, CalculatedBalls[i]);

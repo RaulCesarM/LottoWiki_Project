@@ -1,43 +1,8 @@
 <mat-toolbar >
-  <button mat-button routerLink="/home"> <mat-icon>home</mat-icon></button>
+  <button mat-button  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" > <mat-icon>menu</mat-icon></button>
+  <app-nav-sidenav></app-nav-sidenav> 
+  <span class="example-spacer"></span>
   <span class="spadding">Lotto-Wiki</span>
   <span class="example-spacer"></span>
-
-  <!-- <div>
-    <button mat-button class="larger-button" mat-button routerLink="/lunations">
-      <i class="fa-regular fa-moon fa-ml"></i>
-    </button>
-  </div>
-  <div>
-    <button mat-button class="larger-button" mat-button routerLink="/ranking">
-      <i class="fa-solid fa-ranking-star fa-ml"></i>
-    </button>
-  </div>
-  <div>
-    <button mat-button class="larger-button" mat-button routerLink="/correl">
-      <span > <img src="assets/diagrama-de-relacao.png" width="15px"></span>       
-    </button>
-  </div>
-   <div>
-    <button mat-button class="larger-button" mat-button routerLink="/ranking">
-      <i class="fa-solid fa-download fa-ml"></i>
-    </button>
-  </div>
-  <div>
-    <button mat-button class="larger-button" mat-button routerLink="/status">
-      <span > <img src="assets/divisao-celular.png" width="15px"></span>
-    </button>
-  </div>
-  <div>
-    <button mat-button class="larger-button" mat-button routerLink="/pg-ranking">
-      <span > <img src="assets/simbolo-matematico-da-funcao.png" width="15px"></span>
-    </button>
-  </div>   
-  <div>
-    <button mat-button class="larger-button" mat-button routerLink="/pg-config">
-      <span > <img src="assets/configuracoes.png" width="15px"></span>
-    </button>
-  </div> -->
-
-  
+  <button mat-button routerLink="/home"> <mat-icon>home</mat-icon></button>  
 </mat-toolbar>

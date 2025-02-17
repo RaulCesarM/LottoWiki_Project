@@ -8,6 +8,8 @@ namespace LottoWiki.Service.ViewModels.Entities
         public int ConcursoAnterior { get; set; }
         public int ProximoConcurso { get; set; }
 
+        public int Macro_Estado { get; set; }
+
         public LotoFacilViewModelDoOver()
         {
         }

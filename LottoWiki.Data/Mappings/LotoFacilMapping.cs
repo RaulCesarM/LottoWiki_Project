@@ -31,6 +31,7 @@ namespace LottoWiki.Data.Mappings
             builder.Property(L => L.Casa_13).HasMaxLength(2).HasColumnType("int");
             builder.Property(L => L.Casa_14).HasMaxLength(2).HasColumnType("int");
             builder.Property(L => L.Casa_15).HasMaxLength(2).HasColumnType("int");
+            builder.Property(L => L.Macro_Estado).HasMaxLength(10).HasColumnType("int");
 
             builder.HasData(new LotoFacil
             {
@@ -54,7 +55,8 @@ namespace LottoWiki.Data.Mappings
                 Casa_12 = 09,
                 Casa_13 = 05,
                 Casa_14 = 16,
-                Casa_15 = 03
+                Casa_15 = 03,
+                Macro_Estado = 100
             },
             new LotoFacil
             {
@@ -78,7 +80,8 @@ namespace LottoWiki.Data.Mappings
                 Casa_12 = 01,
                 Casa_13 = 09,
                 Casa_14 = 13,
-                Casa_15 = 07
+                Casa_15 = 07,
+                Macro_Estado = 100
             },
            new LotoFacil
            {
@@ -102,7 +105,8 @@ namespace LottoWiki.Data.Mappings
                Casa_12 = 10,
                Casa_13 = 09,
                Casa_14 = 17,
-               Casa_15 = 24
+               Casa_15 = 24,
+               Macro_Estado = 100
            });
         }
     }

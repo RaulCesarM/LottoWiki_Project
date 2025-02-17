@@ -9,5 +9,7 @@
         public string DataApuracao { get; set; }
         public string NomeMunicipioUFSorteio { get; set; }
         public string LuaDoSorteio { get; set; }
+
+        public int Macro_Estado { get; set; }
     }
 }

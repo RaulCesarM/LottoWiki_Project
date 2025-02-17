@@ -38,6 +38,7 @@ namespace LottoWiki.Data.Mappings
             builder.Property(L => L.Bola_23).HasMaxLength(3).HasColumnType("int");
             builder.Property(L => L.Bola_24).HasMaxLength(3).HasColumnType("int");
             builder.Property(L => L.Bola_25).HasMaxLength(3).HasColumnType("int");
+            builder.Property(L => L.Macro_Estado).HasMaxLength(10).HasColumnType("int");
 
             builder.HasData(
             new LotoFacilOverdue
@@ -69,7 +70,8 @@ namespace LottoWiki.Data.Mappings
                 Bola_22 = 1,
                 Bola_23 = 0,
                 Bola_24 = 0,
-                Bola_25 = 0
+                Bola_25 = 0,
+                Macro_Estado = 10,
             },
             new LotoFacilOverdue
             {
@@ -100,7 +102,8 @@ namespace LottoWiki.Data.Mappings
                 Bola_22 = 2,
                 Bola_23 = 0,
                 Bola_24 = 0,
-                Bola_25 = 1
+                Bola_25 = 1,
+                Macro_Estado = 10,
             },
             new LotoFacilOverdue
             {
@@ -131,7 +134,8 @@ namespace LottoWiki.Data.Mappings
                 Bola_22 = 3,
                 Bola_23 = 0,
                 Bola_24 = 0,
-                Bola_25 = 2
+                Bola_25 = 2,
+                Macro_Estado = 10,
             });
         }
     }

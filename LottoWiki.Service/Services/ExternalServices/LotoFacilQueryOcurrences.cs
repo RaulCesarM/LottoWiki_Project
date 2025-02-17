@@ -40,6 +40,31 @@ namespace LottoWiki.Service.Services.ExternalServices
             return small;
         }
 
+        public LotoFacilViewModelSmal GetById(int id, int inteval)
+        {
+            int[] values = new int[25];
+            List<LotoFacil> response = _repository.GetInRangeFromConcursoAsync(id, inteval).Result;
+            var small = new LotoFacilViewModelSmal();
+
+            foreach (var lotoFacil in response)
+            {
+                for (int j = 1; j <= 15; j++)
+                {
+                    string propertyName = BallNameFormatter.FormatBallName("Casa", j);
+                    var property = typeof(LotoFacil).GetProperty(propertyName);
+                    int ball = (int)property.GetValue(lotoFacil);
+
+                    if (ball >= 1 && ball <= 25)
+                    {
+                        values[ball - 1]++;
+                    }
+                }
+            }
+            small.Concurso = response.LastOrDefault().Concurso;
+            small.Values = values;
+            return small;
+        }
+
         public LotoFacilViewModelSmal GetLast()
         {
             int[] values = new int[25];

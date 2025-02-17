@@ -23,7 +23,7 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
 
         public LotoFacilSupply(ILotoFacilService services, IConfiguration configuration, ILogger<LotoFacilSupply> logger)
         {
-            _url = configuration.GetSection("LotofacilApi")["Url"];            
+            _url = configuration.GetSection("LotofacilApi")["Url"];
             _services = services;
             _nextContest = _services.GetNextId();
             _logger = logger;
@@ -74,11 +74,12 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
                 LotofacilViewModel.ProximoConcurso = Deserialized.NumeroConcursoProximo;
                 LotofacilViewModel.DataApuracao = Deserialized.DataApuracao;
                 LotofacilViewModel.Concurso = Deserialized.Numero;
-
+                LotofacilViewModel.Macro_Estado = 0;
                 for (int i = 0; i < 15; i++)
                 {
                     int ballNumber = i + 1;
                     int luckyBall = Deserialized.DezenasSorteadasOrdemSorteio[i];
+                    LotofacilViewModel.Macro_Estado += luckyBall;
                     string propertyName = $"Casa_{(ballNumber < 10 ? "0" : "")}{ballNumber}";
                     var property = LotofacilViewModel.GetType().GetProperty(propertyName);
                     property.SetValue(LotofacilViewModel, luckyBall);

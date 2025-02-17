@@ -16,7 +16,6 @@ namespace LottoWiki.Service.Services.SupplyServices
         private int CurrentBaseId { get; set; }
 
         public LotoFacilViewModelOverdue LastOverDue { get; set; }
-
         public LotoFacilViewModelDoOver LastDoOver { get; set; }
         public LotoFacilViewModelDoOver NewDoOver { get; set; } = new();
 
@@ -84,8 +83,10 @@ namespace LottoWiki.Service.Services.SupplyServices
         private void Populate()
         {
             _logger.LogMethodInfo();
+            NewDoOver.Macro_Estado = 0;
             for (int i = 0; i < OverdueCountage.Count; i++)
             {
+                NewDoOver.Macro_Estado += DoOverCountage[i];
                 string propertyName = BallNameFormatter.FormatBallName("Bola", i + 1);
                 var property = typeof(LotoFacilViewModelOverdue).GetProperty(propertyName);
                 property.SetValue(NewDoOver, DoOverCountage[i]);
