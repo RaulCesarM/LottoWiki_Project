@@ -59,11 +59,31 @@ namespace LottoWiki.Data.Repositories.Repositories
 
                 foreach (var entity in entities)
                 {
-                    result.AppendLine($"{entity.Bola_01}{entity.Bola_02}{entity.Bola_03}{entity.Bola_04}{entity.Bola_05}" +
-                                       $"{entity.Bola_06}{entity.Bola_07}{entity.Bola_08}{entity.Bola_09}{entity.Bola_10}" +
-                                       $"{entity.Bola_11}{entity.Bola_12}{entity.Bola_13}{entity.Bola_14}{entity.Bola_15}" +
-                                       $"{entity.Bola_16}{entity.Bola_17}{entity.Bola_18}{entity.Bola_19}{entity.Bola_20}" +
-                                       $"{entity.Bola_21}{entity.Bola_22}{entity.Bola_23}{entity.Bola_24}{entity.Bola_25}");
+                    result.AppendLine($"{entity.Bola_01}" +
+                        $"{entity.Bola_02}" +
+                        $"{entity.Bola_03}" +
+                        $"{entity.Bola_04}" +
+                        $"{entity.Bola_05}" +
+                        $"{entity.Bola_06}" +
+                        $"{entity.Bola_07}" +
+                        $"{entity.Bola_08}" +
+                        $"{entity.Bola_09}" +
+                        $"{entity.Bola_10}" +
+                        $"{entity.Bola_11}" +
+                        $"{entity.Bola_12}" +
+                        $"{entity.Bola_13}" +
+                        $"{entity.Bola_14}" +
+                        $"{entity.Bola_15}" +
+                        $"{entity.Bola_16}" +
+                        $"{entity.Bola_17}" +
+                        $"{entity.Bola_18}" +
+                        $"{entity.Bola_19}" +
+                        $"{entity.Bola_20}" +
+                        $"{entity.Bola_21}" +
+                        $"{entity.Bola_22}" +
+                        $"{entity.Bola_23}" +
+                        $"{entity.Bola_24}" +
+                        $"{entity.Bola_25}");
                 }
             }
             catch (Exception ex)

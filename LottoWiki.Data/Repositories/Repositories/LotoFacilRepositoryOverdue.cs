@@ -54,5 +54,46 @@ namespace LottoWiki.Data.Repositories.Repositories
 
             return entities;
         }
+
+        public async Task<List<int>> GetGlobalStandardDeviation()
+        {
+            try
+            {
+                List<int> allBalls = await _context.Set<LotoFacilOverdue>()
+                    .SelectMany(x => new[]
+                    {   x.Bola_01,
+                        x.Bola_02,
+                        x.Bola_03,
+                        x.Bola_04,
+                        x.Bola_05,
+                        x.Bola_06,
+                        x.Bola_07,
+                        x.Bola_08,
+                        x.Bola_09,
+                        x.Bola_10,
+                        x.Bola_11,
+                        x.Bola_12,
+                        x.Bola_13,
+                        x.Bola_14,
+                        x.Bola_15,
+                        x.Bola_16,
+                        x.Bola_17,
+                        x.Bola_18,
+                        x.Bola_19,
+                        x.Bola_20,
+                        x.Bola_21,
+                        x.Bola_22,
+                        x.Bola_23,
+                        x.Bola_24,
+                        x.Bola_25
+                    })
+                    .ToListAsync();
+                return allBalls;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Erro ao calcular o desvio padrão global.", ex);
+            }
+        }
     }
 }

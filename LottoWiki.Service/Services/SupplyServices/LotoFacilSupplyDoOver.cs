@@ -21,6 +21,7 @@ namespace LottoWiki.Service.Services.SupplyServices
 
         public List<int> OverdueCountage { get; set; } = [];
         public List<int> DoOverCountage { get; set; } = [];
+        public double StandardDeviant { get; set; }
 
         public LotoFacilSupplyDoOver(ILotoFacilServiceDoOver dooverService,
                                      ILotoFacilServiceOverdue overdueService,
@@ -44,6 +45,7 @@ namespace LottoWiki.Service.Services.SupplyServices
         {
             LastOverDue = _overdueService.GetById(NextDoOverId);
             LastDoOver = _dooverService.GetLast();
+            StandardDeviant = _dooverService.GetGlobalStandardDeviation();
             PopulateLockyBalls();
             Populate();
             Save().Wait();
@@ -94,6 +96,9 @@ namespace LottoWiki.Service.Services.SupplyServices
             NewDoOver.Concurso = LastOverDue.Concurso;
             NewDoOver.ProximoConcurso = LastOverDue.ProximoConcurso;
             NewDoOver.ConcursoAnterior = LastOverDue.ConcursoAnterior;
+            NewDoOver.Media_Concurso = DoOverCountage.Average();
+            NewDoOver.Desvio_Padrao_Concurso = StatsOperations.CalcularDesvioPadrao(DoOverCountage);
+            NewDoOver.Desvio_Padrao_Global = StandardDeviant;
         }
 
         private async Task Save()

@@ -2,6 +2,7 @@
 using LottoWiki.Domain.Interfaces.IRepository;
 using LottoWiki.Domain.Models.Entities;
 using LottoWiki.Service.Interfaces.Internal;
+using LottoWiki.Service.Utils;
 using LottoWiki.Service.ViewModels.Entities;
 
 namespace LottoWiki.Service.Services.InternalServices
@@ -50,6 +51,12 @@ namespace LottoWiki.Service.Services.InternalServices
         public async Task Insert(LotoFacilViewModelDoOver entity)
         {
             await _repository.Insert(_mapper.Map<LotoFacilDoOver>(entity));
+        }
+
+        public double GetGlobalStandardDeviation()
+        {
+            List<int> result = _repository.GetGlobalStandardDeviation().Result;
+            return StatsOperations.CalcularDesvioPadrao(result);
         }
     }
 }

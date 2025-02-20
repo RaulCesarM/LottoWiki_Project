@@ -9,5 +9,9 @@ namespace LottoWiki.Service.Interfaces.External
         LotoFacilViewModelSmal GetById(int id);
 
         LotoFacilViewModelSmal GetById(int id, int interval);
+
+        int GetFrequency(int numero, int concurso, int range);
+
+        int GetRequiredContest(int numero, int concurso, int range);
     }
 }

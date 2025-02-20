@@ -89,5 +89,15 @@ namespace LottoWiki.Service.Services.ExternalServices
             small.Values = values;
             return small;
         }
+
+        public int GetFrequency(int numero, int concurso, int range)
+        {
+            return _repository.GetFrequencyAsync(numero, concurso, range).Result;
+        }
+
+        public int GetRequiredContest(int numero, int concurso, int range)
+        {
+            return _repository.GetRequiredContest(numero, concurso, range).Result;
+        }
     }
 }

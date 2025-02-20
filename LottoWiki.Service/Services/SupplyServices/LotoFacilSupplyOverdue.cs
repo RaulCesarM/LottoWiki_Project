@@ -16,7 +16,10 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
         public LotoFacilViewModel LastBase { get; set; }
         public LotoFacilViewModelOverdue NewOverDue { get; set; } = new();
         public List<int> CalculatedBalls { get; set; } = [];
+
         private readonly ILogger<LotoFacilSupplyOverdue> _logger;
+
+        public double StandardDeviant { get; set; }
 
         public LotoFacilSupplyOverdue(ILotoFacilService services,
                                       ILotoFacilServiceOverdue overdueServices,
@@ -40,6 +43,7 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
         {
             LastOverDue = _overdueService.GetLast();
             LastBase = _baseService.GetById(NextOverdueId);
+            StandardDeviant = _overdueService.GetGlobalStandardDeviation();
             PopulateLockyBalls();
             Populate();
             Save().Wait();
@@ -85,6 +89,9 @@ namespace LottoWiki.Service.Services.LotoFacilSupply
             NewOverDue.Concurso = LastBase.Concurso;
             NewOverDue.ProximoConcurso = LastBase.ProximoConcurso;
             NewOverDue.ConcursoAnterior = LastBase.ConcursoAnterior;
+            NewOverDue.Media_Concurso = CalculatedBalls.Average();
+            NewOverDue.Desvio_Padrao_Concurso = StatsOperations.CalcularDesvioPadrao(CalculatedBalls);
+            NewOverDue.Desvio_Padrao_Global = StandardDeviant;
         }
 
         private async Task Save()

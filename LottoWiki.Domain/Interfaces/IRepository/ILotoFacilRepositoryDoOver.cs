@@ -8,5 +8,7 @@ namespace LottoWiki.Domain.Interfaces.IRepository
         Task<List<LotoFacilDoOver>> GetEntityList(int id);
 
         Task<List<LotoFacilDoOver>> GetEntityListInRange(int id, int range);
+
+        Task<List<int>> GetGlobalStandardDeviation();
     }
 }

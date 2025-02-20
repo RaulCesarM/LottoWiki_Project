@@ -5,5 +5,6 @@ namespace LottoWiki.Service.Interfaces.Internal
 {
     public interface ILotoFacilServiceDoOver : IService<LotoFacilViewModelDoOver, int>
     {
+        double GetGlobalStandardDeviation();
     }
 }

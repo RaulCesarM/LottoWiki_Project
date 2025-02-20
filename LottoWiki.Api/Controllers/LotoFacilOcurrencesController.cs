@@ -34,11 +34,27 @@ namespace LottoWiki.Api.Controllers
 
         [HttpGet("Ocurrences/{id}")]
         [ProducesResponseType(typeof(LotoFacilViewModelSmal), 200)]
+        [ProducesResponseType(typeof(int), 200)]
         [ProducesResponseType(500)]
         public IActionResult GetById([FromRoute] int id)
         {
             _logger.LogMethodInfo();
             LotoFacilViewModelSmal response = _service.GetById(id);
+            if (response == null)
+            {
+                _logger.LogMethodWarning();
+                return NotFound();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet("teste")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(500)]
+        public IActionResult GetTest()
+        {
+            _logger.LogMethodInfo();
+            int response = _service.GetRequiredContest(11, 3323, 5);
             if (response == null)
             {
                 _logger.LogMethodWarning();
