@@ -57,7 +57,16 @@ namespace LottoWiki.Service.Services.InternalServices
         public double GetGlobalStandardDeviation()
         {
             List<int> result = _repository.GetGlobalStandardDeviation().Result;
-            return StatsOperations.CalcularDesvioPadrao(result);
+            return result.CalcularDesvioPadrao();
+        }
+
+        public double GetGlobalMeans()
+        {
+            List<int> result = _repository.GetGlobalMeans().Result;
+            if (result == null || result.Count == 0)
+                throw new ArgumentException("A lista de valores não pode estar vazia.");
+
+            return result.Average();
         }
     }
 }

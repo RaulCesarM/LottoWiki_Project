@@ -31,7 +31,7 @@ namespace LottoWiki.Data.Mappings
             builder.Property(L => L.Casa_13).HasMaxLength(2).HasColumnType("int");
             builder.Property(L => L.Casa_14).HasMaxLength(2).HasColumnType("int");
             builder.Property(L => L.Casa_15).HasMaxLength(2).HasColumnType("int");
-            builder.Property(L => L.Macro_Estado).HasMaxLength(10).HasColumnType("int");
+            builder.Property(L => L.Macro_Estado).HasMaxLength(4).HasColumnType("int");
 
             builder.HasData(new LotoFacil
             {

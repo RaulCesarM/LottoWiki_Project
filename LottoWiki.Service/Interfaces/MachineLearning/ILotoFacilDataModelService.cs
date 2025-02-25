@@ -5,5 +5,7 @@ namespace LottoWiki.Service.Interfaces.MachineLearning
     public interface ILotoFacilDataModelService
     {
         public void CreateCsv(string filePath);
+
+        public void initializeServices();
     }
 }

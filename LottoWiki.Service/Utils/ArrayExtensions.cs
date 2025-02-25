@@ -31,5 +31,27 @@
                 data[i] = temporaryArray[i];
             }
         }
+
+        public static double CalcularDesvioPadrao(this List<int> valores)
+        {
+            if (valores == null || valores.Count == 0)
+                throw new ArgumentException("A lista de valores não pode estar vazia.");
+
+            double media = valores.Average();
+            double somaQuadrados = valores.Sum(x => Math.Pow(x - media, 2));
+
+            return Math.Sqrt(somaQuadrados / valores.Count);
+        }
+
+        public static double CalcularDesvioPadrao(this List<double> valores)
+        {
+            if (valores == null || valores.Count == 0)
+                throw new ArgumentException("A lista de valores não pode estar vazia.");
+
+            double media = valores.Average();
+            double somaQuadrados = valores.Sum(x => Math.Pow(x - media, 2));
+
+            return Math.Sqrt(somaQuadrados / valores.Count);
+        }
     }
 }

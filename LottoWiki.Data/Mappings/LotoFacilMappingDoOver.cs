@@ -38,11 +38,11 @@ namespace LottoWiki.Data.Mappings
             builder.Property(L => L.Bola_23).HasMaxLength(3).HasColumnType("int");
             builder.Property(L => L.Bola_24).HasMaxLength(3).HasColumnType("int");
             builder.Property(L => L.Bola_25).HasMaxLength(3).HasColumnType("int");
-            builder.Property(L => L.Macro_Estado).HasMaxLength(10).HasColumnType("int");
-            builder.Property(L => L.Media_Concurso).HasMaxLength(50).HasColumnType("double");
-            builder.Property(L => L.Media_Global).HasMaxLength(50).HasColumnType("double");
-            builder.Property(L => L.Desvio_Padrao_Concurso).HasMaxLength(50).HasColumnType("double");
-            builder.Property(L => L.Desvio_Padrao_Global).HasMaxLength(50).HasColumnType("double");
+            builder.Property(L => L.Macro_Estado).HasMaxLength(4).HasColumnType("int");
+            builder.Property(l => l.MediaConcurso).HasColumnType("decimal(18,2)");
+            builder.Property(l => l.MediaGlobal).HasColumnType("decimal(18,2)");
+            builder.Property(l => l.DesvioPadraoConcurso).HasColumnType("decimal(18,2)");
+            builder.Property(l => l.DesvioPadraoGlobal).HasColumnType("decimal(18,2)");
 
             builder.HasData(
             new LotoFacilDoOver
@@ -76,10 +76,10 @@ namespace LottoWiki.Data.Mappings
                 Bola_24 = 0,
                 Bola_25 = 0,
                 Macro_Estado = 10,
-                Media_Concurso = 1.0,
-                Media_Global = 1.0,
-                Desvio_Padrao_Concurso = 1.0,
-                Desvio_Padrao_Global = 1.0
+                MediaConcurso = 1.0,
+                MediaGlobal = 1.0,
+                DesvioPadraoConcurso = 1.0,
+                DesvioPadraoGlobal = 1.0
             },
             new LotoFacilDoOver
             {
@@ -112,10 +112,10 @@ namespace LottoWiki.Data.Mappings
                 Bola_24 = 0,
                 Bola_25 = 1,
                 Macro_Estado = 10,
-                Media_Concurso = 1.0,
-                Media_Global = 1.0,
-                Desvio_Padrao_Concurso = 1.0,
-                Desvio_Padrao_Global = 1.0
+                MediaConcurso = 1.0,
+                MediaGlobal = 1.0,
+                DesvioPadraoConcurso = 1.0,
+                DesvioPadraoGlobal = 1.0
             },
             new LotoFacilDoOver
             {
@@ -148,10 +148,10 @@ namespace LottoWiki.Data.Mappings
                 Bola_24 = 0,
                 Bola_25 = 2,
                 Macro_Estado = 10,
-                Media_Concurso = 1.0,
-                Media_Global = 1.0,
-                Desvio_Padrao_Concurso = 1.0,
-                Desvio_Padrao_Global = 1.0
+                MediaConcurso = 1.0,
+                MediaGlobal = 1.0,
+                DesvioPadraoConcurso = 1.0,
+                DesvioPadraoGlobal = 1.0
             });
         }
     }

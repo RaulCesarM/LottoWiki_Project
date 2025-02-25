@@ -7,7 +7,7 @@
 namespace LottoWiki.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Name : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,7 +37,7 @@ namespace LottoWiki.Data.Migrations
                     DataApuracao = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
                     NomeMunicipioUFSorteio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
                     LuaDoSorteio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    Macro_Estado = table.Column<int>(type: "int", maxLength: 10, nullable: false)
+                    Macro_Estado = table.Column<int>(type: "int", maxLength: 4, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +51,11 @@ namespace LottoWiki.Data.Migrations
                     Concurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ConcursoAnterior = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ProximoConcurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    Macro_Estado = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    Macro_Estado = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    MediaConcurso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MediaGlobal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DesvioPadraoConcurso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DesvioPadraoGlobal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Bola_01 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_02 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_03 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
@@ -90,7 +94,11 @@ namespace LottoWiki.Data.Migrations
                     Concurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ConcursoAnterior = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     ProximoConcurso = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    Macro_Estado = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    Macro_Estado = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    MediaConcurso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MediaGlobal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DesvioPadraoConcurso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DesvioPadraoGlobal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Bola_01 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_02 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Bola_03 = table.Column<int>(type: "int", maxLength: 3, nullable: false),
@@ -172,22 +180,22 @@ namespace LottoWiki.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "bola.atraso",
-                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25", "Macro_Estado" },
+                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25", "DesvioPadraoConcurso", "DesvioPadraoGlobal", "Macro_Estado", "MediaConcurso", "MediaGlobal" },
                 values: new object[,]
                 {
-                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 10 },
-                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 10 },
-                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2, 10 }
+                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1m, 1m, 10, 1m, 1m },
+                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 1m, 1m, 10, 1m, 1m },
+                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2, 1m, 1m, 10, 1m, 1m }
                 });
 
             migrationBuilder.InsertData(
                 table: "bola.repetida",
-                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25", "Macro_Estado" },
+                columns: new[] { "Concurso", "ConcursoAnterior", "ProximoConcurso", "Bola_01", "Bola_02", "Bola_03", "Bola_04", "Bola_05", "Bola_06", "Bola_07", "Bola_08", "Bola_09", "Bola_10", "Bola_11", "Bola_12", "Bola_13", "Bola_14", "Bola_15", "Bola_16", "Bola_17", "Bola_18", "Bola_19", "Bola_20", "Bola_21", "Bola_22", "Bola_23", "Bola_24", "Bola_25", "DesvioPadraoConcurso", "DesvioPadraoGlobal", "Macro_Estado", "MediaConcurso", "MediaGlobal" },
                 values: new object[,]
                 {
-                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 10 },
-                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 10 },
-                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2, 10 }
+                    { 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1m, 1m, 10, 1m, 1m },
+                    { 2, 1, 3, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 1m, 1m, 10, 1m, 1m },
+                    { 3, 2, 4, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 3, 0, 0, 2, 1m, 1m, 10, 1m, 1m }
                 });
 
             migrationBuilder.InsertData(

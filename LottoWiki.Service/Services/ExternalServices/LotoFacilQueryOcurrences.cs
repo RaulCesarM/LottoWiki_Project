@@ -40,10 +40,10 @@ namespace LottoWiki.Service.Services.ExternalServices
             return small;
         }
 
-        public LotoFacilViewModelSmal GetById(int id, int inteval)
+        public LotoFacilViewModelSmal GetById(int id, int interval)
         {
             int[] values = new int[25];
-            List<LotoFacil> response = _repository.GetInRangeFromConcursoAsync(id, inteval).Result;
+            List<LotoFacil> response = _repository.GetInRangeFromConcursoAsync(id, interval).Result;
             var small = new LotoFacilViewModelSmal();
 
             foreach (var lotoFacil in response)

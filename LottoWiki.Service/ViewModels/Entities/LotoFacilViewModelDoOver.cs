@@ -9,10 +9,10 @@ namespace LottoWiki.Service.ViewModels.Entities
         public int ProximoConcurso { get; set; }
 
         public int Macro_Estado { get; set; }
-        public double Media_Concurso { get; set; }
-        public double Media_Global { get; set; }
-        public double Desvio_Padrao_Concurso { get; set; }
-        public double Desvio_Padrao_Global { get; set; }
+        public double MediaConcurso { get; set; }
+        public double MediaGlobal { get; set; }
+        public double DesvioPadraoConcurso { get; set; }
+        public double DesvioPadraoGlobal { get; set; }
 
         public LotoFacilViewModelDoOver()
         {

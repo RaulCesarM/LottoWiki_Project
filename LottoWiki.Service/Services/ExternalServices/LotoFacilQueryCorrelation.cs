@@ -125,5 +125,49 @@ namespace LottoWiki.Service.Services.ExternalServices
 
             return viewModel;
         }
+
+        public int GetMostCorrelatedNumber(int targetNumber)
+        {
+            SetPeriod(180);
+            if (targetNumber < 1 || targetNumber > 25)
+                throw new ArgumentOutOfRangeException(nameof(targetNumber), "O número deve estar entre 1 e 25.");
+
+            int maxCorrelation = 0;
+            int mostCorrelatedNumber = -1;
+
+            for (int i = 0; i < 25; i++)
+            {
+                if (i != targetNumber - 1 && Correlations[targetNumber - 1][i] > maxCorrelation)
+                {
+                    maxCorrelation = Correlations[targetNumber - 1][i];
+                    mostCorrelatedNumber = i + 1;
+                }
+            }
+
+            return mostCorrelatedNumber;
+        }
+
+        public int GetLeastCorrelatedNumber(int targetNumber)
+        {
+            SetPeriod(180);
+            if (targetNumber < 1 || targetNumber > 25)
+                throw new ArgumentOutOfRangeException(nameof(targetNumber), "O número deve estar entre 1 e 25.");
+
+            int minCorrelation = int.MaxValue;
+            int leastCorrelatedNumber = -1;
+
+            for (int i = 0; i < 25; i++)
+            {
+                int correlation = Correlations[targetNumber - 1][i];
+
+                if (i != targetNumber - 1 && correlation < minCorrelation && correlation > 0)
+                {
+                    minCorrelation = correlation;
+                    leastCorrelatedNumber = i + 1;
+                }
+            }
+
+            return leastCorrelatedNumber;
+        }
     }
 }

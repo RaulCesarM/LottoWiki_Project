@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LottoWiki.Data.Migrations
 {
     [DbContext(typeof(LotofacilContext))]
-    [Migration("20250214153834_initial")]
-    partial class initial
+    [Migration("20250221162427_Name")]
+    partial class Name
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace LottoWiki.Data.Migrations
                         .HasColumnType("varchar");
 
                     b.Property<int>("Macro_Estado")
-                        .HasMaxLength(10)
+                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeMunicipioUFSorteio")
@@ -310,9 +310,21 @@ namespace LottoWiki.Data.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("int");
 
+                    b.Property<decimal>("DesvioPadraoConcurso")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DesvioPadraoGlobal")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Macro_Estado")
-                        .HasMaxLength(10)
+                        .HasMaxLength(4)
                         .HasColumnType("int");
+
+                    b.Property<decimal>("MediaConcurso")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MediaGlobal")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Concurso", "ConcursoAnterior", "ProximoConcurso");
 
@@ -349,7 +361,11 @@ namespace LottoWiki.Data.Migrations
                             Bola_23 = 0,
                             Bola_24 = 0,
                             Bola_25 = 0,
-                            Macro_Estado = 10
+                            DesvioPadraoConcurso = 1m,
+                            DesvioPadraoGlobal = 1m,
+                            Macro_Estado = 10,
+                            MediaConcurso = 1m,
+                            MediaGlobal = 1m
                         },
                         new
                         {
@@ -381,7 +397,11 @@ namespace LottoWiki.Data.Migrations
                             Bola_23 = 0,
                             Bola_24 = 0,
                             Bola_25 = 1,
-                            Macro_Estado = 10
+                            DesvioPadraoConcurso = 1m,
+                            DesvioPadraoGlobal = 1m,
+                            Macro_Estado = 10,
+                            MediaConcurso = 1m,
+                            MediaGlobal = 1m
                         },
                         new
                         {
@@ -413,7 +433,11 @@ namespace LottoWiki.Data.Migrations
                             Bola_23 = 0,
                             Bola_24 = 0,
                             Bola_25 = 2,
-                            Macro_Estado = 10
+                            DesvioPadraoConcurso = 1m,
+                            DesvioPadraoGlobal = 1m,
+                            Macro_Estado = 10,
+                            MediaConcurso = 1m,
+                            MediaGlobal = 1m
                         });
                 });
 
@@ -531,9 +555,21 @@ namespace LottoWiki.Data.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("int");
 
+                    b.Property<decimal>("DesvioPadraoConcurso")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DesvioPadraoGlobal")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Macro_Estado")
-                        .HasMaxLength(10)
+                        .HasMaxLength(4)
                         .HasColumnType("int");
+
+                    b.Property<decimal>("MediaConcurso")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MediaGlobal")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Concurso", "ConcursoAnterior", "ProximoConcurso");
 
@@ -570,7 +606,11 @@ namespace LottoWiki.Data.Migrations
                             Bola_23 = 0,
                             Bola_24 = 0,
                             Bola_25 = 0,
-                            Macro_Estado = 10
+                            DesvioPadraoConcurso = 1m,
+                            DesvioPadraoGlobal = 1m,
+                            Macro_Estado = 10,
+                            MediaConcurso = 1m,
+                            MediaGlobal = 1m
                         },
                         new
                         {
@@ -602,7 +642,11 @@ namespace LottoWiki.Data.Migrations
                             Bola_23 = 0,
                             Bola_24 = 0,
                             Bola_25 = 1,
-                            Macro_Estado = 10
+                            DesvioPadraoConcurso = 1m,
+                            DesvioPadraoGlobal = 1m,
+                            Macro_Estado = 10,
+                            MediaConcurso = 1m,
+                            MediaGlobal = 1m
                         },
                         new
                         {
@@ -634,7 +678,11 @@ namespace LottoWiki.Data.Migrations
                             Bola_23 = 0,
                             Bola_24 = 0,
                             Bola_25 = 2,
-                            Macro_Estado = 10
+                            DesvioPadraoConcurso = 1m,
+                            DesvioPadraoGlobal = 1m,
+                            Macro_Estado = 10,
+                            MediaConcurso = 1m,
+                            MediaGlobal = 1m
                         });
                 });
 

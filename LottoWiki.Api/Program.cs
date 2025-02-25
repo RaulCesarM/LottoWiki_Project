@@ -36,6 +36,13 @@ namespace LottoWiki.Api
                 services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
                 services.AddHostedService<LotoFacilWorkerSupplyDoOver>();
 
+                services.AddLogging(); // Usa a injeção de dependência padrão para logging
+
+                // Registrar os Workers corretamente
+                //services.AddHostedService<LotoFacilWorkerSupplyStatus>();
+                //services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
+                //services.AddHostedService<LotoFacilWorkerSupplyDoOver>();
+
                 services.AddSingleton(LotoFacilConfigurationsAutoMapper.Configure());
 
                 LotoFacilConfigurationsBootstrapper.RegisterServices(services);
@@ -78,3 +85,24 @@ namespace LottoWiki.Api
         }
     }
 }
+
+//using Microsoft.AspNetCore.Hosting;
+//using Microsoft.Extensions.Hosting;
+
+//namespace LottoWiki.Api
+//{
+//    public class Program
+//    {
+//        public static void Main(string[] args)
+//        {
+//            CreateHostBuilder(args).Build().Run();
+//        }
+
+//        public static IHostBuilder CreateHostBuilder(string[] args) =>
+//            Host.CreateDefaultBuilder(args)
+//                .ConfigureWebHostDefaults(webBuilder =>
+//                {
+//                    webBuilder.UseStartup<Startup>();
+//                });
+//    }
+//}

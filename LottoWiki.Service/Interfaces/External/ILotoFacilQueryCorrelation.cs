@@ -7,5 +7,9 @@ namespace LottoWiki.Service.Interfaces.External
         int[][] PopulateArrayOfArrays(int range);
 
         LotoFacilViewModelCorrelationFriends GetTopCorrelationsForTarget(int targetNumber);
+
+        int GetMostCorrelatedNumber(int targetNumber);
+
+        int GetLeastCorrelatedNumber(int targetNumber);
     }
 }

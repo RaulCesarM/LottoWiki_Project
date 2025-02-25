@@ -4,10 +4,12 @@ using LottoWiki.Domain.Interfaces.Base;
 using LottoWiki.Domain.Interfaces.IRepository;
 using LottoWiki.Service.Interfaces.External;
 using LottoWiki.Service.Interfaces.Internal;
+using LottoWiki.Service.Interfaces.MachineLearning;
 using LottoWiki.Service.Interfaces.Supply;
 using LottoWiki.Service.Services.ExternalServices;
 using LottoWiki.Service.Services.InternalServices;
 using LottoWiki.Service.Services.LotoFacilSupply;
+using LottoWiki.Service.Services.MachineLearningServices;
 using LottoWiki.Service.Services.SupplyServices;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,6 +38,9 @@ namespace LottoWiki.Service.Repositories
             builder.AddScoped<ILotoFacilQueryDataToText, LotoFacilQueryDataToText>();
             builder.AddScoped<ILotoFacilQueryOcurrences, LotoFacilQueryOcurrences>();
             builder.AddScoped<ILotoFacilQueryDoOver, LotoFacilQueryDoOver>();
+
+            /* machine learning */
+            builder.AddScoped<ILotoFacilDataModelService, LotoFacilDataModelService>();
 
             /* Supplier */
             builder.AddScoped<ILotoFacilSupply, LotoFacilSupply>();

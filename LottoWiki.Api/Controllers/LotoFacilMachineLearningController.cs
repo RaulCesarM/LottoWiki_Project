@@ -26,5 +26,14 @@ namespace LottoWiki.Api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("TESTE")]
+        public IActionResult GetTest()
+        {
+            _logger.LogMethodInfo();
+            _service.initializeServices();
+
+            return Ok();
+        }
     }
 }

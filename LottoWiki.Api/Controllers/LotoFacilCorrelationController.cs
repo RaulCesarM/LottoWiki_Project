@@ -49,5 +49,39 @@ namespace LottoWiki.Api.Controllers
 
             return Ok(correlations);
         }
+
+        [HttpGet("number/{number}")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult GetNumber([FromRoute] int number)
+        {
+            _logger.LogMethodInfo();
+            int correlations = _service.GetMostCorrelatedNumber(number);
+            if (correlations == null)
+            {
+                _logger.LogMethodWarning();
+                return NotFound(new { Message = $"No correlations found for target with key {number}." });
+            }
+
+            return Ok(correlations);
+        }
+
+        [HttpGet("numberleast/{number}")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult GetLeastNumber([FromRoute] int number)
+        {
+            _logger.LogMethodInfo();
+            int correlations = _service.GetLeastCorrelatedNumber(number);
+            if (correlations == null)
+            {
+                _logger.LogMethodWarning();
+                return NotFound(new { Message = $"No correlations found for target with key {number}." });
+            }
+
+            return Ok(correlations);
+        }
     }
 }
