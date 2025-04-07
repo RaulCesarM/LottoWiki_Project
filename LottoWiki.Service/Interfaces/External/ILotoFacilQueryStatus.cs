@@ -7,5 +7,7 @@
         int GetLastId();
 
         char[] GetById(int id);
+
+        char[] GetByLuckyBall(int id, int col, int qtd);
     }
 }

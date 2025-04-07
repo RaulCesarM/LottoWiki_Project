@@ -14,7 +14,6 @@ import { NavToolbarComponent } from './nav-modules/nav-toolbar/nav-toolbar.compo
 import { NavSidenavComponent } from './nav-modules/nav-sidenav/nav-sidenav.component';
 import { NavFooterComponent } from './nav-modules/nav-footer/nav-footer.component';
 import { ChartsRankingsComponent } from './charts-module/charts-rankings/charts-rankings.component';
-import { ChartsMoonsComponent } from './charts-module/charts-moons/charts-moons.component';
 import { CorrelationsComponent } from './charts-module/correlations/correlations.component';
 import { FormsModule } from '@angular/forms';
 import { ChartsOnionComponent } from './charts-module/charts-onion/charts-onion.component';
@@ -39,8 +38,7 @@ import { LegendExplanationComponent } from './components/tools/legend-explanatio
     NavToolbarComponent,
     NavSidenavComponent,
     NavFooterComponent,
-    ChartsRankingsComponent,
-    ChartsMoonsComponent,
+    ChartsRankingsComponent,   
     CorrelationsComponent,
     ChartsOnionComponent,
     ExplanationCorrelationsComponent,

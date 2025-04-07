@@ -1,5 +1,5 @@
 ﻿using LottoWiki.Data.Contexts;
-using LottoWiki.Domain.Interfaces.Base;
+using LottoWiki.Domain.Interfaces.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace LottoWiki.Data.Repositories.Bases

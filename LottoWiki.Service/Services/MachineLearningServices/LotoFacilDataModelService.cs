@@ -1,5 +1,4 @@
-﻿using LottoWiki.Service.Interfaces.MachineLearning;
-using LottoWiki.Domain.Interfaces.IRepository;
+﻿using LottoWiki.Domain.Interfaces.IRepository;
 using LottoWiki.Service.ViewModels.Entities;
 using LottoWiki.Service.Interfaces.External;
 using LottoWiki.Domain.Models.Entities;
@@ -10,7 +9,7 @@ using LottoWiki.Service.Utils;
 
 namespace LottoWiki.Service.Services.MachineLearningServices
 {
-    public class LotoFacilDataModelService : ILotoFacilDataModelService
+    public class LotoFacilDataModelService
     {
         private readonly ILotoFacilRepositoryStatus _statusRepository;
 

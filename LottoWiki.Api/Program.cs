@@ -1,8 +1,10 @@
+using LotoWiki.MachineLearning.ConfigServices;
 using LottoWiki.Data.Contexts;
 using LottoWiki.Service.Configurations;
 using LottoWiki.Service.Repositories;
 using LottoWiki.Service.Workers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ML;
 
 namespace LottoWiki.Api
 {
@@ -28,7 +30,7 @@ namespace LottoWiki.Api
                 services.AddLogging(logging =>
                 {
                     logging.AddConsole();
-                    logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None); // Disable EF Core SQL logging
+                    logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None);
                 });
 
                 services.AddHostedService<LotoFacilWorkerSupplyBase>();
@@ -36,16 +38,13 @@ namespace LottoWiki.Api
                 services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
                 services.AddHostedService<LotoFacilWorkerSupplyDoOver>();
 
-                services.AddLogging(); // Usa a injeção de dependência padrão para logging
-
-                // Registrar os Workers corretamente
-                //services.AddHostedService<LotoFacilWorkerSupplyStatus>();
-                //services.AddHostedService<LotoFacilWorkerSupplyOverDue>();
-                //services.AddHostedService<LotoFacilWorkerSupplyDoOver>();
-
+                services.AddLogging();
                 services.AddSingleton(LotoFacilConfigurationsAutoMapper.Configure());
 
                 LotoFacilConfigurationsBootstrapper.RegisterServices(services);
+
+                services.AddSingleton<MLContext>();
+                MachineLearningBootstrapper.RegisterServices(services);
             });
 
             builder.ConfigureWebHostDefaults(webBuilder =>
@@ -85,24 +84,3 @@ namespace LottoWiki.Api
         }
     }
 }
-
-//using Microsoft.AspNetCore.Hosting;
-//using Microsoft.Extensions.Hosting;
-
-//namespace LottoWiki.Api
-//{
-//    public class Program
-//    {
-//        public static void Main(string[] args)
-//        {
-//            CreateHostBuilder(args).Build().Run();
-//        }
-
-//        public static IHostBuilder CreateHostBuilder(string[] args) =>
-//            Host.CreateDefaultBuilder(args)
-//                .ConfigureWebHostDefaults(webBuilder =>
-//                {
-//                    webBuilder.UseStartup<Startup>();
-//                });
-//    }
-//}

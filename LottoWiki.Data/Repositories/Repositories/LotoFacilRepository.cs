@@ -3,7 +3,6 @@ using LottoWiki.Data.Repositories.Bases;
 using LottoWiki.Domain.Interfaces.IRepository;
 using LottoWiki.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
 
 namespace LottoWiki.Data.Repositories.Repositories
 {

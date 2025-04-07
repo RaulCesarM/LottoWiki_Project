@@ -1,4 +1,4 @@
-﻿namespace LottoWiki.Service.Interfaces.Base
+﻿namespace LottoWiki.Service.Interfaces.Internal
 {
     public interface IService<TEntity, in Tkey> where TEntity : class
     {

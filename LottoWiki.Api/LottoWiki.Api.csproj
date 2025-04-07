@@ -30,10 +30,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
-  </ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />  </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LotoWiki.MachineLearning\LotoWiki.MachineLearning.csproj" />
     <ProjectReference Include="..\LottoWiki.Data\LottoWiki.Data.csproj" />
     <ProjectReference Include="..\LottoWiki.Service\LottoWiki.Service.csproj" />
   </ItemGroup>

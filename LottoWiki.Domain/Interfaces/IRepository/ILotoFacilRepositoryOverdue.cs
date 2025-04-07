@@ -1,5 +1,4 @@
-﻿using LottoWiki.Domain.Interfaces.Base;
-using LottoWiki.Domain.Models.Entities;
+﻿using LottoWiki.Domain.Models.Entities;
 
 namespace LottoWiki.Domain.Interfaces.IRepository
 {

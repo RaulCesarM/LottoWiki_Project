@@ -47,5 +47,21 @@ namespace LottoWiki.Api.Controllers
 
             return Ok(id);
         }
+
+        [HttpGet("{id}/{col}/{qtd}")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult GetByLuckyBall(int id, int col, int qtd)
+        {
+            char[] response = _service.GetByLuckyBall(id, col, qtd);
+            string responseConverted = new string(response);
+            if (response == null)
+            {
+                _logger.LogMethodWarning();
+                return NotFound();
+            }
+            return Ok(responseConverted);
+        }
     }
 }

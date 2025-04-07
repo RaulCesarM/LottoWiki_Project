@@ -50,5 +50,11 @@ namespace LottoWiki.Service.Services.ExternalServices
 
             return StatusValues;
         }
+
+        public char[] GetByLuckyBall(int id, int col, int qtd)
+        {
+            char[] lastStatus = _repository.GetByLuckyBall(id, col, qtd).Result;
+            return lastStatus;
+        }
     }
 }

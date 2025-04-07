@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="4.0.2" />
+    <PackageReference Include="Microsoft.ML.LightGbm" Version="4.0.2" />
+    <PackageReference Include="Microsoft.ML.TensorFlow" Version="4.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LottoWiki.Data\LottoWiki.Data.csproj" />
+    <ProjectReference Include="..\LottoWiki.Domain\LottoWiki.Domain.csproj" />
+    <ProjectReference Include="..\LottoWiki.Service\LottoWiki.Service.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,6 +3,7 @@ using LottoWiki.Data.Repositories.Bases;
 using LottoWiki.Domain.Interfaces.IRepository;
 using LottoWiki.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Text;
 
 namespace LottoWiki.Data.Repositories.Repositories
@@ -14,6 +15,34 @@ namespace LottoWiki.Data.Repositories.Repositories
         public LotoFacilRepositoryStatus(LotofacilContext context) : base(context)
         {
             _context = context;
+        }
+
+        public async Task<char[]> GetByLuckyBall(int id, int col, int qtd)
+        {
+            char[] result = Array.Empty<char>();
+
+            try
+            {
+                string columnName = $"Bola_{col:D2}";
+
+                var queryResult = await _context.Set<LotoFacilStatus>()
+                    .Where(x => x.Concurso <= id)
+                    .OrderByDescending(x => x.Concurso)
+                    .Select(x => EF.Property<char?>(x, columnName))
+                    .Where(c => c.HasValue)
+                    .Take(qtd)
+                    .Select(c => c.Value)
+                    .ToArrayAsync();
+
+                result = queryResult;
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = $"Um erro ocorreu ao buscar a coluna {col}. O resultado permanece vazio.";
+                throw new InvalidOperationException(errorMessage, ex);
+            }
+
+            return result;
         }
 
         public async Task<List<LotoFacilStatus>> GetEntityList(int id, int range)

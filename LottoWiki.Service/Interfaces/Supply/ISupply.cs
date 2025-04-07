@@ -1,4 +1,4 @@
-﻿namespace LottoWiki.Service.Interfaces.Base
+﻿namespace LottoWiki.Service.Interfaces.Supply
 {
     public interface ISupply
     {

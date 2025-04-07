@@ -1,5 +1,4 @@
-﻿using LottoWiki.Domain.Interfaces.Base;
-using LottoWiki.Domain.Models.Entities;
+﻿using LottoWiki.Domain.Models.Entities;
 
 namespace LottoWiki.Domain.Interfaces.IRepository
 {
@@ -8,5 +7,7 @@ namespace LottoWiki.Domain.Interfaces.IRepository
         Task<List<LotoFacilStatus>> GetEntityList(int id, int range);
 
         Task<string> GetEntityListAsString(int id);
+
+        Task<char[]> GetByLuckyBall(int id, int col, int qtd);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace LottoWiki.Domain.Interfaces.Base
+﻿namespace LottoWiki.Domain.Interfaces.IRepository
 {
     public interface IRepository<TEntity> where TEntity : class
     {
